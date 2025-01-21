@@ -1,4 +1,4 @@
-# Course 1
+# Course 1 -- Java基础语法速通
 
 本来Course1想直接讲类和对象，但还是觉得先粗略堤讲解一下Java的基础语法
 

@@ -1,10 +1,10 @@
-# Real Course 1
+# Real Course 1 对象和类
 
 ## 对象和类
 
 > 在开始机器人编程实践之前，我更希望大家能够了解一些常用的编程技巧。（这真的很重要！）
 
-## 面向过程 VS. 面向对象
+### 面向过程 VS. 面向对象
 
 ​        **面向过程**就像将编程当成是做一件事，要按**步骤**完成，每一步就是一个过程。比如作菜，先放油，接着是放菜进去炒，然后放水，最后菜就做好了。这里面放油，炒，放水就是三个步骤。
 
@@ -22,12 +22,12 @@
 
 > 接下来，将介绍对象和类的概念。在此，我先断言你已经掌握了Java的基本语法
 
-## 概念: 对象和类
+#### 概念: 对象和类
 
 - **对象**：对象是类的一个实例，有状态和行为。
 - **类**：类是一个模板，它描述一类对象的行为和状态。
 
-### 对象与类的差别
+#### 对象与类的差别
 
 **对象**是具体的，有该对象特定**属性值**和**方法**的。
 
@@ -35,7 +35,7 @@
 
 对象可以被想象成一个具体的物体，类可以被想象成将一类物体抽象提炼出一个概念。比如你笔盒里有一支短铅笔、另有一支钝铅笔，他们都从属于铅笔这一抽象概念。铅笔这个概念描述了这两支铅笔有石墨和粘土构成的铅芯和木制的外壳、可以在纸上写字，但是铅笔这个**概念**是没有这些**物质性**的特征的。（你不能手握一个虚无缥缈的概念书写，对吧？）这就是类与对象的差别。在这个例子中，铅笔是类，一支短铅笔和另一支钝铅笔是两个对象。
 
-### 对象和类的理解
+#### 对象和类的理解
 
 **对象**是类的一个实例。我们也可以用真实世界的**类**与**对象**来理解编程中的对应概念。
 
@@ -273,7 +273,7 @@ public class Dog {
 
 以上代码针对name这一变量展示了完整的封装。
 
-## *补充：访问修饰符
+### *补充：访问修饰符
 
 Java中，可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
 
@@ -290,6 +290,267 @@ Java中，可以使用访问控制符来保护对类、变量、方法和构造�
 | `protected` | Y      | Y        | Y              | Y/N[^4]        | N      |
 | `default`   | Y      | Y        | Y              | N              | N      |
 | `private`   | Y      | N        | N              | N              | N      |
+
+---
+
+## 类之间的关系
+
+> 理论上，目前为止你就可以直接进行机器人编写，以下关于继承，重写等的操作在机器人实际编写中使用不多。不过我仍然建议你了解一下以下内容。
+
+### 继承
+
+#### 1.概念
+
+继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。以下是便于理解的一个例子:
+
+![img](https://www.runoob.com/wp-content/uploads/2013/12/14B0951E-FC75-47A3-B611-4E1883887339.jpg)
+
+在实际编程中，我们可以把几个功能有重复，或者有相关性的类抽象出一个**父类**，并让**子类**分别继承**父类**，可以提高维护性，代码也更加简洁，提高代码的复用性。
+
+#### 2.Java代码
+
+```Java
+class 父类 {
+}
+ 
+class 子类 extends 父类 {
+}
+```
+
+当子类继承这个父类之后，就具有父类当中的属性和方法，子类就不会存在重复的代码。
+
+例如：有一个汽车类和巴士类
+
+```java
+public class Car{
+	private String name;
+    public Car(String name){
+        this.name = name;
+    }
+    public void drive(){
+        System.out.println(name+"开车了"); 
+    }
+}
+```
+
+```java
+public class Bus{
+	private String name;
+    public Bus(String name){
+        this.name = name;
+    }
+   	public void drive(){
+        System.out.println(name+"开车了"); 
+    }
+    public void pay(){
+        System.out.println("你坐上了公交车，付钱！"); 
+    }
+}
+```
+
+那么我们可以提炼出一个父类Vehicle类
+
+```java
+public class Vehicle{
+	private String name;
+    public Vehicle(String name){
+        this.name = name;
+    }
+    public void drive(){
+        System.out.println(name+"开车了"); 
+    }
+}
+```
+
+那么Car类与Bus类就可以这样写
+
+```java
+public class Car extends Vehicle{
+	public Car(String name){
+    	super(name);
+    }
+}
+```
+
+```java
+public class Bus extends Vehicle{
+	public Bus(String name){
+        super(name);
+    }
+    public void pay(){
+        System.out.println("你坐上了公交车，付钱！"); 
+    }
+}
+```
+
+**注意**：super关键字指向父类，相当于父类的this
+
+#### 3. 方法的重写(Override)
+
+重写是在继承关系的基础上，重写父类已有的方法，写成一个子类的新方法。在调用子类的该方法时，使用子类的方法而不是父类的方法。
+
+继续以上面的车子的代码为例，以下是重写的一个例子，你可以体会一下其作用：
+
+```java
+public class Bus extends Vehicle{
+	public Bus(String name){
+        super(name);
+    }
+    
+    @Override
+    public void drive(){                         // 重写了父类的drive()方法
+        System.out.println(name+"开车了，开的很慢"); 
+    }
+    
+    public void pay(){
+        System.out.println("你坐上了公交车，付钱！"); 
+    }
+}
+```
+
+这时在使用Bus类的drive方法，就会输出 "开车了，开的很慢"
+
+### 抽象与实现
+
+#### 1.抽象类
+
+在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。
+
+省流：**抽象类**可以不写方法的具体**实现**，只规范他有些什么方法，需要在后续代码中**实现**或**重写**
+
+在Java中，用abstract关键字来声明一个抽象类/函数
+
+```java
+public abstract class Vehicle{
+	private String name;
+    public Vehicle(String name){
+        this.name = name;
+    }
+    // 这是一个抽象方法，在父类中，没有具体实现，需要每个子类各自实现这个方法
+    public abstract void drive(){}
+}
+```
+
+#### 2.重写
+
+在实现中也非常简单，使用@Override关键词来重写方法就可以输入具体实现
+
+```java
+public class Bus extends Vehicle{
+	public Bus(String name){
+        super(name);
+    }
+    
+    @Override
+    public void drive(){                         // 实现了父类的drive()方法
+        System.out.println(name+"开车了，开的很慢"); 
+    }
+    
+    public void pay(){
+        System.out.println("你坐上了公交车，付钱！"); 
+    }
+}
+```
+
+#### 3.接口
+
+如果一个类里面全是抽象的方法，那就是一个**接口**，我们这样来定义一个接口
+
+```java
+[可见度] interface 接口名称 [extends 其他的接口名] {
+        // 声明变量
+        // 抽象方法
+}
+```
+
++ 接口不能有具体的方法**实现**，也就是说，方法的里面必须是空的！
+
++ 接口不能用来**实例化**！必须有其他类来**继承 **(implements)
+
++ 接口里面除了有default标明的方法，必须在继承时全部实现！
+
++ 接口可以多继承（同一个类可以继承多个接口）
+
+我们可以把Vehicle抽象成一个接口，大概就像这样：
+
+```java
+public interface Vehicle{
+	private String name;
+    public void drive();
+    public default void pay();// 不是所有的载具需要pay，所以若不实现就默认为空
+}
+```
+
+那么Bus的代码就会变成这样：
+
+```java
+public class Bus implements Vehicle{
+	public Bus(String name){
+        super(name);
+    }
+    
+    @Override
+    public void drive(){                         // 实现了父类的drive()方法
+        System.out.println(name+"开车了，开的很慢"); 
+    }
+    
+    @Override
+    public void pay(){
+        System.out.println("你坐上了公交车，付钱！"); 
+    }
+}
+```
+
+那么抽象有什么优点呢，可以方便后续代码的调用和维护，比如**多态**。
+
+### 多态
+
+情景： 我们现在作为一个人，需要去乘坐这些载具了，我们可以自己开车，也可以做公交车（当然，还有很多出行方式）
+
+那么，我们想要去使用载具的行为就像这样
+
+```java
+public class Person{
+    Bus bus = new Bus("bus");
+    Car car = new Car("car");
+	public void go(String choice){
+        switch(choice){
+            case "Car":
+                car.drive();
+            case "Bus":
+                bus.drive();
+        }
+    }
+    public static void main(String[] args){
+        go("Bus");
+    }
+}
+```
+
+你不难发现，这个代码如同答辩，因为每多增加一种出行方式，我们就要在switch例多写一个判断。没有可维护性。
+
+但是如果我们让两个类继承自Vehicle类的话，我们就可以这样写。
+
+```java
+public class Person{
+	public static void go(Vehicle vehicle){
+        vehicle.drive();
+        }
+    }
+	public static void main(String[] args){
+        Bus bus = new Bus("bus");
+        go(bus);
+    }
+}
+```
+
+Bus作为一个Vehicle的子类，可以作为这里参数的Vehicle类型直接传入，并调用driv()方法。
+
+当然，如果有其他载具，只需要让他继承Vehicle类，不需要改变这里人的逻辑，增强了可延展性。
+
+此外，如果不同载具的drive逻辑不同，只需要在继承时重写该方法即可，通过调用vehicle.drive()可以做到不同载具的不同逻辑，此处就不赘述了。
+
+---
 
 ## 练习
 
@@ -383,15 +644,6 @@ public class EmployeeTest {
     }
 }
 ```
-
-## 下回预告
-
-+ 继承
-+ 重写
-+ 重载
-+ 多态
-
-.etc~
 
 ---
 
