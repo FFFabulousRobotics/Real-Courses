@@ -109,11 +109,11 @@ JDK 是 Java 开发工具包（Java Development Kit）的缩写，目前有多�
 
    **SDK Platforms**:
 
-   - “Android SDK Platform 29”
+   - “Android SDK Platform 30”
 
    **SDK Tools**:
 
-   - “Android SDK Build Tools 35” 下的 “29.0.3”
+   - “Android SDK Build Tools 35” 下的 “30.0.3”
    - “NDK (Side by Side)” 下的 “21.3.6528147”
    - “Android SDK Platform-Tools”
    - “Android SDK Tools (Obsolete)”
