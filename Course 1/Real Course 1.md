@@ -383,7 +383,7 @@ public class Bus extends Vehicle{
 }
 ```
 
-**注意**：super关键字指向父类，相当于父类的this
+**注意**：super关键字指向父类，相当于父类的this。super()方法则表示调用父类构造函数。
 
 #### 3. 方法的重写(Override)
 
@@ -422,7 +422,7 @@ public class Bus extends Vehicle{
 
 ```java
 public abstract class Vehicle{
-	private String name;
+    private String name;
     public Vehicle(String name){
         this.name = name;
     }
@@ -463,7 +463,7 @@ public class Bus extends Vehicle{
 }
 ```
 
-+ 接口不能有具体的方法**实现**，也就是说，方法的里面必须是空的！
++ 接口不能有具体的方法**实现**，也就是说，方法的里面必须是空的（除了带有default的方法）！
 
 + 接口不能用来**实例化**！必须有其他类来**继承 **(implements)
 
@@ -475,9 +475,9 @@ public class Bus extends Vehicle{
 
 ```java
 public interface Vehicle{
-	private String name;
+    private String name;
     public void drive();
-    public default void pay();// 不是所有的载具需要pay，所以若不实现就默认为空
+    public default void pay(){}// 不是所有的载具需要pay，所以若不实现就默认为空
 }
 ```
 
