@@ -275,7 +275,7 @@ B-->E
 
 [FFFabulousRobotics/FtcRobotController](https://github.com/FFFabulousRobotics/FtcRobotController)： fork到FFFabulous组织里的自己的代码仓库，用于同步更新依赖库版本，加镜像源和其他库，**里面不应该有TeamCode的任何代码！这只是一个类似模版的仓库**（历年代码都fork自这个仓库）
 
-[FFFabulousRobotics/FTC-2024-2025](https://github.com/FFFabulousRobotics/FTC-2024-2025)： 存放今年代码的仓库
+FFFabulousRobotics/FTC-20xx-20xx： 真正存放历年代码的仓库
 
 **因此，在这个流程中，你永远不应该反向提出任何pull request！**
 
