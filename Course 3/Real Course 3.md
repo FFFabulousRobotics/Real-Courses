@@ -44,7 +44,7 @@ Git 是一个用于管理源代码的分布式版本控制系统。版本控制�
 
 ### 2.1 Add & Commit
 
-通过 `add` 和 `commit`，可以把当前的**工作区**的代码提交到**本地版本库**并记录。
+通过 add 和 commit，可以把当前的**工作区**的代码提交到**本地版本库**并记录。
 
 #### Android Studio
 
@@ -69,12 +69,12 @@ Git 是一个用于管理源代码的分布式版本控制系统。版本控制�
 
 #### Command Line
 
-在命令行中就显得比较繁琐了，首先需要在命令行打开工作区文件夹（即带有.git文件夹的主目录）：
+在命令行中就显得比较繁琐了，首先需要在命令行打开工作区文件夹（即带有 .git 文件夹的主目录）：
 
 - 你可以打开到那个文件夹后右键，选择使用终端打开
 - 如果没有，在上方地址栏输入 cmd
 
-然后需要手动把修改的文件手动 add 到暂存区，然后再 commit。
+然后需要手动把修改的文件手动执行 add 放到暂存区，然后再 commit。
 
 ```shell
 git add <filename>  # 添加指定文件到暂存区
@@ -85,7 +85,7 @@ git add .           # 添加所有更改到暂存区
 git commit -m "commit message"  # 提交暂存区的更改到本地仓库
 ```
 
-如果想要取消一个已经 add 的文件，则要输入：
+如果想要把一个文件从暂存区中取出（即撤销 add 操作），则要输入：
 
 ```shell
 git reset <filename>
@@ -97,13 +97,13 @@ git reset <filename>
 
 #### Android Studio
 
-在提交之前直接选择 **“Commit and Push...”** 可以一次性完成 commit 和 push。如果你已经 commit 了，但还没有 push，你可以**双击右 shift**,在弹出的界面中输入 **push**。
+在提交之前直接选择 **“Commit and Push...”** 可以一次性完成 commit 和 push。如果你已经 commit 了，但还没有 push，你可以**双击 shift**,在弹出的界面中输入 **push**。
 
 ![img](./imgs/push.png)
 
 ![img](./imgs/push2.png)
 
-点击Push即可。（我这里没有commit内容，所以是空的，如果你有本地commit，右侧应该会有对应内容）
+点击 “Push” 即可。（我这里没有 commit 内容，所以是空的，如果你有本地 commit，右侧应该会有对应内容）
 
 在提交到远程之前，会强制进行一次代码合并（**merge**），把本地代码和远程代码合并成同一份。
 
@@ -185,7 +185,7 @@ ask your question in IRC.
 
 #### Android Studio
 
-双击右 shift，输入 **pull** 或者 **update**，直接点即可。
+双击 shift，输入 **pull** 或者 **update**，直接点即可。
 
 当然，如果你的还没提交的代码和远程大相径庭，可能也需要解决冲突。
 
@@ -206,7 +206,7 @@ git pull origin
 
 ![img](./imgs/checkout.png)
 
-点击左上边的分支按钮，点击当中的 “New Branch from 'xxx'...” 可以新建分支。选择一个分支执行 checkout 可以进入该分支。
+点击左上边的分支按钮，点击当中的 “New Branch from 'xxx' ...” 可以新建分支。选择一个分支执行 checkout 可以进入该分支。
 
 选择一个分支执行 “Merge 'xxx' into 'yyy'” 可以把选择的分支合并到当前分支。（可能需要解决冲突）
 
@@ -234,7 +234,7 @@ git merge <branchname>
 
 ### 3.1 Fork
 
-GitHub 中的 Fork 是一个重要的协作功能，它允许用户复制**别人的 GitHub 仓库**到**自己的 GitHub 账户**中，从而创建一个独立的**副本**。
+GitHub 中的 fork 是一个重要的协作功能，它允许用户复制**别人的 GitHub 仓库**到**自己的 GitHub 账户**中，从而创建一个独立的**副本**。
 
 在 fork 的副本仓库中，在不提交 **Pull Request** 的情况下，不会对主仓库的内容造成影响，方便自己在原来的代码上进行修改并进行版本控制。如有必要，也可以提交 Pull Request 来请求把你的更改合并到主仓库。
 
@@ -250,7 +250,7 @@ GitHub 中的 Fork 是一个重要的协作功能，它允许用户复制**别�
 
 在 Git 版本控制系统（VCS）中，Pull Request（PR）是一种协作开发的重要机制，它**允许开发者将自己的改动提交到项目仓库，并请求项目的维护者审查和合并这些改动**。
 
-PR 通常和 **Issue**、**Fork** 一起使用，我们在自己 fork 的仓库中修改代码后，可以提出 Pull Request 把这份代码合并到主仓库中，这一操作需要项目的维护者审查。
+PR 通常和 **issue**、**fork** 一起使用，我们在自己 fork 的仓库中修改代码后，可以提出 Pull Request 把这份代码合并到主仓库中，这一操作需要项目的维护者审查。
 
 ![img](./imgs/pr.png)
 
