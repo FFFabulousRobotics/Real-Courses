@@ -1,5 +1,7 @@
 # Course 0
 
+> 修订 1.3：为各种版本号增加了仓库版本的参照。
+>
 > 修订 1.2：更改了一些有逻辑错误的语句，增加中文翻译（机翻+校对）。
 >
 > 修订 1.1：更新“Git Credentials”部分。
@@ -8,11 +10,11 @@
 
 > **注意**：由于中国防火墙 (GFW) 的限制，本文档中提到的网站通常很难从中国大陆访问。因此，最好在你的计算机上设置 VPN 服务或代理服务器以获得最佳连接。VPN 通常覆盖整个系统，启用后就不太需要关心了。因此，在本文档中，我们将仅解释如何为每个软件分别设置代理。
 >
-> 就 FTC 2024-2025 赛季 “INTO THE DEEP” 而言，`compileSdkVersion`为30，`ndkVersion`为21.3.6528147，最低版本 `minSdkVersion` 为24。
+> 就 FTC 2025-2026 赛季 “DECODE” (FtcRobotController v11.0) 而言，`compileSdkVersion`为30，`ndkVersion`为21.3.6528147，最低版本 `minSdkVersion` 为24。
 >
-> `Build-Tools`最新大版本为35，与SDK兼容的最新`Build-Tools`版本为35.0.2。
+> `Build-Tools`最新大版本为36，与SDK兼容的最新`Build-Tools`版本为36.0.0。
 >
-> TODO：根据 FTC SDK 和 Google 更新情况在此处和文档中更新这些数字。
+> TODO：根据 FTC SDK 和 Google 更新情况在此处和文档中更新这些数字。`compileSdkVersion`，`ndkVersion`，`minSdkVersion`请参照[官方build.common.gradle文件](https://github.com/FIRST-Tech-Challenge/FtcRobotController/blob/master/build.common.gradle)；`Build-Tools`版本参照Android SDK Manager提供的输出。
 
 你将需要：
 
@@ -54,7 +56,7 @@ Git 是一个版本控制系统 (VCS)，它会在你更改文件内容时将当�
 
 你可以在这里下载 Git 安装程序： [https://git-scm.org ](https://git-scm.org)（中文镜像下载，仅限 Windows： [https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/ ](https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/)）
 
-如果你尝试在 Android Studio 之外使用 Git，我强烈建议你将 Git 添加到你的 PATH 环境变量中。请自行在互联网上搜索如何操作，因为不同的系统可能有稍有不同。
+如果你尝试在 Android Studio 之外使用 Git，我强烈建议你将 Git 添加到你的 PATH 环境变量中。请自行在互联网上搜索如何操作，因为不同的系统操作可能稍有不同。
 
 #### Git 凭据
 
@@ -73,6 +75,10 @@ git config --global user.email 你的邮箱
 git config --global http.proxy http://地址:端口
 git config --global https.proxy http://地址:端口
 ```
+
+#### Git 签名（可选）
+
+如果你想要为你的提交再加一层保险，可以选择添加签名。具体操作可参见[GitHub官方文档](https://docs.github.com/zh/authentication/managing-commit-signature-verification)。
 
 
 ### JDK
@@ -113,7 +119,7 @@ JDK 是 Java 开发工具包（Java Development Kit）的缩写，目前有多�
 
    **SDK Tools**:
 
-   - “Android SDK Build Tools 35” 下的 “30.0.3”
+   - “Android SDK Build Tools 36” 下的 “30.0.3”
    - “NDK (Side by Side)” 下的 “21.3.6528147”
    - “Android SDK Platform-Tools”
    - “Android SDK Tools (Obsolete)”
@@ -125,7 +131,7 @@ JDK 是 Java 开发工具包（Java Development Kit）的缩写，目前有多�
 
 GitHub 是一个成熟的代码托管平台，FTC 的官方 SDK 就存放在 GitHub 上。因此，为了方便起见，我们也选择将代码托管在 GitHub 上。我们的代码存储在我们团队自己的“组织”（一组开发人员共享的帐户）中，你需要创建自己的 GitHub 帐户才能加入该组织。
 
-注册 GitHub 账户需要使用浏览器。由于 GitHub 的服务器位于海外，直接连接速度会非常慢。因此，你可以使用此链接中的扩展程序为浏览器设置代理： https://proxy-switchyomega.com/
+注册 GitHub 账户需要使用浏览器。由于 GitHub 的服务器位于海外，直接连接速度会非常慢。因此，你可以使用此链接中的扩展程序为浏览器设置代理： [ZeroOmega](https://www.crxsoso.com/webstore/detail/pfnededegaaopdmhkdmcofjmoldfiped)
 
 ## 在你的第一堂课之前
 
@@ -154,7 +160,7 @@ GitHub 是一个成熟的代码托管平台，FTC 的官方 SDK 就存放在 Git
 
 ### 找个 Java 速成课程
 
-即使你对编程一无所知，Java 速成课程也足以满足我们所有的编程需求。我推荐[https://www.runoob.com](https://www.runoob.com)，因为它是用中文写的，但它相当枯燥，所以你可能会中途失去兴趣。如果你愿意跨越语言壁垒，我推荐[https://sololearn.com ](https://sololearn.com)，它是用英文写的。这个网站的课程更有吸引力，感觉比 runoob.com 更容易学。
+即使你对编程一无所知，Java 速成课程也足以满足我们所有的编程需求。我推荐[https://www.runoob.com](https://www.runoob.com)，因为它是用中文写的，但它相当枯燥，所以你可能会中途失去兴趣。如果你愿意跨越语言壁垒，我推荐[https://sololearn.com](https://sololearn.com)，它是用英文写的。这个网站的课程更有吸引力，感觉比 runoob.com 更容易学。
 
 
 
