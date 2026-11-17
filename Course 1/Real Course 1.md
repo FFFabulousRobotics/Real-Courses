@@ -505,3 +505,43 @@ if (condition) {
     return value2;
 }
 ```
+
+## 6 标准输入/输出
+
+### 6.1 输出
+
+无换行输出：
+
+```java
+System.out.print("Hello, world!");
+```
+
+```text
+Hello, world!
+```
+
+有换行输出：
+
+```java
+System.out.println("Hello, world!");
+```
+
+```text
+Hello, world!
+
+```
+
+### 6.2 输入
+
+先创建一个 `Scanner` 对象：
+
+```java
+Scanner scanner = new Scanner(System.in);
+```
+
+然后根据输入类型读取输入：
+
+```java
+int value = scanner.nextInt();
+double percent = scanner.nextDouble();
+```
