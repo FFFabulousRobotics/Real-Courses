@@ -1,10 +1,10 @@
-# Git 与 GitHub
+# Course 4 - Git 与 GitHub
 
-> 在本章中，我不会向你介绍Git的具体安装步骤。（你应该在 [Course 0](../Course%200/Real%20Course%200%20(zh-CN).md) 中已经安装好了）
+> 在本章中，我不会向你介绍Git的具体安装步骤。（你应该在 [Course 0](../Course%200/Real%20Course%200.md) 中已经安装好了）
 >
 > 如果你想要跳过枯燥的介绍环节，请跳转到[第4节](#4-在机器人编写中你需要知道)。
 
-## 0. 什么是 Git ？
+## 0 什么是 Git ？
 
 Git 是一个用于管理源代码的分布式版本控制系统。版本控制系统会在您修改文件时记录并保存更改，使您可以随时恢复以前的工作版本。使用 Git，您可以轻松访问源代码的修改历史记录。您可以看到版本如何更改以及更改的人。因为整个 Git 历史都存储在共享存储库中，所以 Git 可以防止旧版本的无意覆盖。
 
@@ -14,9 +14,7 @@ Git 是一个用于管理源代码的分布式版本控制系统。版本控制�
 - **以团队形式协作编写代码**
 - **查看谁做了哪些更改**
 
-![img](https://nulab.com/static/775ba7c8ed89fbce217271b1954b1b2e/21b4d/02.png)
-
-## 1. 基本概念
+## 1 基本概念
 
 我们先来理解下 Git 工作区、暂存区和版本库概念：
 
@@ -32,21 +30,21 @@ Git 是一个用于管理源代码的分布式版本控制系统。版本控制�
 
 多人协作中，Git 常常与 GitHub 一起使用，上面这张图的版本库指**本地版本库**，在使用 GitHub 时，还有**本地版本库**和**远程版本库**之分，请在阅读后面内容时注意他们的区别。
 
-## 2. 基本操作
+## 2 基本操作
 
 一般而言，大多数的 Git 操作都是在命令行中完成的。当然，也可以选择图形化软件来直观地使用。
 
 对于初学者而言，使用图形化的 Git 管理插件是一个不错的选择；而大多数 IDE（包括 Android studio，VS Code）中都有这种图形化插件。
 
-### 2.0 基础操作流程
+Git 操作的基础流程：
 
-![img](./imgs/workflow.png) 
+![workflow](./imgs/workflow.png)
 
 ### 2.1 Add & Commit
 
 通过 add 和 commit，可以把当前的**工作区**的代码提交到**本地版本库**并记录。
 
-#### Android Studio
+#### 2.1.1 Android Studio
 
 当你对**本地的已追踪文件**做出修改时，左侧栏中会显示对应的更改（**“Changes”**）。
 
@@ -67,7 +65,7 @@ Git 是一个用于管理源代码的分布式版本控制系统。版本控制�
 - 对于没有在 Git 暂存区的文件，右键文件进入 “Git” 菜单点击 “Add” 也可执行 add 操作：
   ![img](./imgs/as-git-add-2.png)
 
-#### Command Line
+#### 2.1.2 Command Line
 
 在命令行中就显得比较繁琐了，首先需要在命令行打开工作区文件夹（即带有 .git 文件夹的主目录）：
 
@@ -95,7 +93,7 @@ git reset <filename>
 
 通过 **push** ，可以把**本地版本库**的数据同步到**远程版本库**（如 GitHub）。
 
-#### Android Studio
+#### 2.2.1 Android Studio
 
 在提交之前直接选择 **“Commit and Push...”** 可以一次性完成 commit 和 push。如果你已经 commit 了，但还没有 push，你可以**双击 shift**,在弹出的界面中输入 **push**。
 
@@ -111,7 +109,7 @@ git reset <filename>
 
 后面再讲。
 
-#### Command Line
+#### 2.2.2 Command Line
 
 在 commit 之后，输入：
 
@@ -130,7 +128,7 @@ git push
 
 如果 Git 无法智能地合并代码，通常因为修改了同一份代码的同一个方法，或是变量，需要人工解决冲突。
 
-#### Android Studio
+#### 2.3.1 Android Studio
 
 界面大概长成这样：
 
@@ -146,7 +144,7 @@ git push
 
 结束后选择 “Apply” 即可解决冲突。
 
-#### Command Line
+#### 2.3.2 Command Line
 
 在命令行中，用`git status`命令查询是否有冲突。
 
@@ -183,13 +181,13 @@ ask your question in IRC.
 
 与 push 相反，**pull** 用来把**远程版本库**的代码同步到自己的**本地版本库**。
 
-#### Android Studio
+#### 2.4.1 Android Studio
 
 双击 shift，输入 **pull** 或者 **update**，直接点即可。
 
 当然，如果你的还没提交的代码和远程大相径庭，可能也需要解决冲突。
 
-#### Command Line
+#### 2.4.2 Command Line
 
 用 pull 命令来同步本地，接受远程分支作为参数，默认为`origin/master`。
 
@@ -202,7 +200,7 @@ git pull origin
 
 使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。
 
-#### Android Studio
+#### 2.5.1 Android Studio
 
 ![img](./imgs/checkout.png)
 
@@ -210,7 +208,7 @@ git pull origin
 
 选择一个分支执行 “Merge 'xxx' into 'yyy'” 可以把选择的分支合并到当前分支。（可能需要解决冲突）
 
-#### Command Line
+#### 2.5.2 Command Line
 
 创建新分支并切换到该分支：
 
@@ -230,7 +228,7 @@ git checkout <branchname>
 git merge <branchname>
 ```
 
-## 3. GitHub相关
+## 3 GitHub相关
 
 ### 3.1 Fork
 
@@ -254,15 +252,9 @@ PR 通常和 **issue**、**fork** 一起使用，我们在自己 fork 的仓库�
 
 ![img](./imgs/pr.png)
 
-## 4. 在机器人编写中，你需要知道
+## 4 在机器人编写中，你需要知道
 
-
-
-<p style="font-size: 3rem !important; color: red !important;">十分重要！！一定要看！！</p>
-
-
-
-### 4.1  我们使用的机器人仓库的fork流：
+### 4.1 我们使用的机器人仓库的fork流
 
 ```mermaid
 graph TB
@@ -282,19 +274,11 @@ B-->E
 
 [FFFabulousRobotics/FtcRobotController](https://GitHub.com/FFFabulousRobotics/FtcRobotController)： fork到FFFabulous组织里的自己的代码仓库，用于同步更新依赖库版本，加镜像源和其他库，**里面不应该有TeamCode的任何代码！这只是一个类似模版的仓库**（历年代码都fork自这个仓库）
 
-FFFabulousRobotics/FTC-20xx-20xx（本赛季 [FTC-2024-2025](https://github.com/FFFabulousRobotics/FTC-2024-2025)）： 真正存放历年代码的仓库
+FFFabulousRobotics/FTC-20xx-20xx： 真正存放历年代码的仓库
 
 **因此，在这个流程中，你永远不应该反向提出任何 Pull Request！**
 
-### 4.2  关于master分支保护：
-
-> 我实际上一直觉得我们的代码开这个功能没啥必要，但是懒得关（
-
-FTC-2024-2025 仓库中，不能直接提交代码到 master 分支中。你需要在其他分支完善代码，然后通过 Pull Request 合并到 master 分支。这从一定角度促进人们合理分工，并留下开分支测试新功能的好习惯。
-
-> 如果你们哪天真的烦了就把 master 保护关了把（
-
-### 4.3  你不能干的事情！
+### 4.2  你不能干的事情！
 
 你最好不要干以下事情：
 
@@ -304,6 +288,6 @@ FTC-2024-2025 仓库中，不能直接提交代码到 master 分支中。你需�
 
   ![img](./imgs/wtf.png)
 
-+ sudo rm -rf /
++ `sudo rm -rf /`
 
 + 其他的没想到
