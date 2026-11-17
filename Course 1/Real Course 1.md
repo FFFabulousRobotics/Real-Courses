@@ -1,653 +1,448 @@
-# Real Course 1 对象和类
+# Course 1 - Java 基础语法速通
 
-## 对象和类
+> [!NOTE]
+> 本文档并没有涉及所有的 Java 语句用法，只是择其重点，且内容比较杂。若想详细学习 Java，建议自己到网上寻找更多详细教程。
 
-> 在开始机器人编程实践之前，我更希望大家能够了解一些常用的编程技巧。（这真的很重要！）
+## 1 第一个 Java 程序
 
-### 面向过程 VS. 面向对象
-
-​        **面向过程**就像将编程当成是做一件事，要按**步骤**完成，每一步就是一个过程。比如作菜，先放油，接着是放菜进去炒，然后放水，最后菜就做好了。这里面放油，炒，放水就是三个步骤。
-
-​        **面向对象**就是将编程当成是一个事物，对外界来说，事物是直接使用的，**不用去管他内部的情况**。而编程就是设置事物能够做什么事。其实有点像是将面向过程给放到事物内部了。仍然举作菜为例，其实**面向过程**就好像你是个厨师，要自己炒菜，所以要讲究步骤，而**面向对象**就好像你是个食客，你只要通知厨师作菜，即发一个消息就可以了，至于厨师怎样作菜，是不用知道的。
-
-> 在学习面向对象之前，至少需要对面向过程编程有一点了解（至少语法得都认识吧）
-
-### 何时创建面向对象的程序
-
-​        简单的编程任务可以用简单的函数来实现。然而，随着任务的规模和复杂度的增加，函数会变得更加复杂和难以管理。
-
-​        当函数变得太大时，您可以将它们分成较小的函数，并将数据从一个函数传递到另一个函数。然而，随着函数数量的增加，设计和管理传递给函数的数据也变得困难和容易出错。这种情况下，你可以考虑面向对象的程序设计。
-
-​        对某些问题来说，从对象的角度来考虑会更简单、更自然。将问题陈述中的名词视为要定义的对象，动词视为要执行的操作。
-
-> 接下来，将介绍对象和类的概念。在此，我先断言你已经掌握了Java的基本语法
-
-#### 概念: 对象和类
-
-- **对象**：对象是类的一个实例，有状态和行为。
-- **类**：类是一个模板，它描述一类对象的行为和状态。
-
-#### 对象与类的差别
-
-**对象**是具体的，有该对象特定**属性值**和**方法**的。
-
-**类**是抽象的（相对于对象而言），只定义一类对象**可以有的属性和方法**，不定义**每个对象特定的**属性值和方法。
-
-对象可以被想象成一个具体的物体，类可以被想象成将一类物体抽象提炼出一个概念。比如你笔盒里有一支短铅笔、另有一支钝铅笔，他们都从属于铅笔这一抽象概念。铅笔这个概念描述了这两支铅笔有石墨和粘土构成的铅芯和木制的外壳、可以在纸上写字，但是铅笔这个**概念**是没有这些**物质性**的特征的。（你不能手握一个虚无缥缈的概念书写，对吧？）这就是类与对象的差别。在这个例子中，铅笔是类，一支短铅笔和另一支钝铅笔是两个对象。
-
-#### 对象和类的理解
-
-**对象**是类的一个实例。我们也可以用真实世界的**类**与**对象**来理解编程中的对应概念。
-
-拿一条狗来举例，**一条狗**是一个**对象**，它的状态有：名字、品种、颜色，行为有：叫、摇尾巴和跑；**狗类**则是一个**类**，代表着一系列有着相似属性、方法的物种。
-
-我们借此理解软件中的概念，**软件对象也有状态和行为。软件对象的状态就是属性，行为通过方法体现。**
-
-<img src="https://www.runoob.com/wp-content/uploads/2013/12/20210105-java-object-1.png" />
-
-你可能会理解为：类是一个集合，而对象是一个元素。**我不反对，但是不要完全依赖集合的概念去理解类，后续的有些概念会有出入！**
-
-## Java 中的类
-
-类可以看成是创建 Java 对象的模板。下面是一个简单的狗类定义。
+下面看一个简单的 Java 程序，它将输出字符串 `Hello World`。
 
 ```java
-public class Dog {
-    String breed;
-    int size;
-    String colour;
-    int age;
- 
-    void eat() {
-    }
- 
-    void run() {
-    }
- 
-    void sleep(){
-    }
- 
-    void name(){
-    }
-}
-```
-
-一个类可以包含以下类型变量：
-
-- **局部变量**：在方法、构造方法或者语句块中定义的变量被称为局部变量。变量声明和初始化都是在方法中，方法结束后，变量就会自动销毁。
-- **成员变量**：成员变量是定义在类中，方法体之外的变量。这种变量在创建对象的时候实例化。成员变量可以被类中方法、构造方法和特定类的语句块访问。
-- **类变量**：类变量也声明在类中，方法体之外，但必须声明为 static 类型。
-
-一个类可以拥有多个方法，在上面的例子中：eat()、run()、sleep() 和 name() 都是 Dog 类的方法。
-
-接下来，我们来详细介绍类的具体定义方式
-
-### 声明一个类
-
-```java
-public class Dog {
-}
-```
-
-这句代码表示声明了一个类，名字为Dog，可全局访问[^1] ，其内部的方法在大括号里面编写。
-
-### 定义一个方法
-
-```java
-public class Dog {
-    public void say(String word){
-        System.out.println(word);
-    }
-}
-```
-
-这句代码往狗类里面加入了一个say的方法，可以让小狗说话，我们来仔细看看这个方法
-
-+ **访问修饰符**（例中为public）：表示该方法允许被使用的范围（访问权限）
-+ **返回类型**（例中为void）：表示该方法返回值的类型（如int, String, void......），具体是什么取决于方法内return语句返回的数据类型，若没有return语句，则返回类型为void。
-+ **方法名**（例中为say）：方法的名字
-+ **参数**（例中为word）：在调用这个方法时，将会接受一个**参数**，被存储为String变量word，在方法的具体实现中，可以直接把word作为变量使用[^2]。
-
-### 成员变量
-
-我们往狗类中加入一个成员变量：年龄
-
-```java
-public class Dog {
-    int age;
-    public void say(String word){
-        System.out.println(word);
-        System.out.println("I'm " + this.age + " years old")
-    }
-    public void grow(){
-        this.age += 1;
-    }
-}
-```
-
-这个代码展示了如何定义一个成员变量，并在方法里使用他。
-
-我们需要注意，如果我们要使用一个定义在**类的主体**中成员变量（我的意思是，不是定义在方法内部），我们需要加上this关键字。
-
-
-
-```java
-public class Dog {
-    private int age;
-    public void say(String word){
-        System.out.println(word);
-    }
-    public void setAge(int age){
-        this.age = age;
-    }
-    public int getAge(){
-        return this.age;
-    }
-}
-```
-
-### 实例化一个类（创建对象）
-
-```java
-public static void main(String[] args) {
-        // 创建对象
-        Dog myDog = new Dog();
-    	myDog.say("Hello!");
-    	myDog.age = 3;
-    }
-```
-
-实例化对象的语法有点类似变量，但是又多了些什么
-
-+ 类型（例中为Dog）：对象的类型（对象对应的类）
-+ 对象名字（例中为myDog）：对象的名字
-+ new关键字
-+ Dog() ：创建一个Dog类型的对象，注意后面的括号！后面你会知道他有什么用。
-
-之后，我们可以用`对象.方法()`来使用其方法。
-
-不仅如此，我们也可以属于`对象.成员变量`来访问其成员变量（甚至修改他）
-
-### 构造方法
-
-每个类都有构造方法。如果没有显式地为类定义构造方法，Java 编译器将会为该类提供一个默认构造方法。**构造方法的名称必须与类同名**，一个类可以有多个构造方法[^3]。构造方法在一个对象被使用**new关键字被创建时立刻被调用**。
-
-```java
-public class Dog {
-    int age;
-    String name;
-    public void Dog(String name){
-        this.name = name;
-        this.age = 1;
-    }
-    public void say(String word){
-        System.out.println(word);
-        System.out.println("I'm " + this.age + " years old")
-    }
-    
-    public void grow(){
-        this.age += 1;
-    }
-}
-```
-
-我们定义了一个构造方法，可以在创建对象时就为小狗赋予名字，并设置年龄为1岁
-
-加入构造方法后，我们创建对象的代码就需要相应地做出改变。
-
-```java
-public static void main(String[] args) {
-        // 创建对象
-        Dog myDog = new Dog("Lucky");
-    	myDog.say("Hello!");
-    	myDog.age = 3;
-    }
-```
-
-关注：传入的Lucky是构造方法的参数！也就是说，在new的这一行里，构造方法被调用了。
-
-### 成员变量的保护
-
-如果，我们写的代码就像这个狗类直接发布给大众，绝对有可能会对我们的类进行这样的篡改。
-
-```java
-public static void main(String[] args) {
-        Dog myDog = new Dog("Lucky");
-    	myDog.age = 99999;
-    }
-```
-
-我们当然不希望这种事情发生，所以需要对age变量进行加密
-
-我们可以把成员变量的访问权限设置为private，防止从其他文件的代码直接访问到变量
-
-我们可以为他们设置专门的get方法，让变量只**可读**。
-
-```java
-public class Dog {
-    private int age;
-    private String name;
-    public void Dog(String name){
-        this.name = name;
-        this.age = 1;
-    }
-    
-    public void say(String word){
-        System.out.println(word);
-        System.out.println("I'm " + this.age + " years old")
-    }
-    
-    public void grow(){
-        this.age += 1;
-    }
-    
-    public int getAge(){
-        return this.age;
-    }
-    
-    public int getName(){
-        return this.name;
-    }
-}
-```
-
-这样，我们只能调用`mydog.getAge()`来读取变量，而无法修改他。
-
-当然，`mydog.age`也不起作用了，因为访问权限已经设置为了private。
-
-这个代码习惯叫做**封装**，只能通过写好的定义get/set方法来访问变量，来保护一些变量防止被恶意修改。
-
-```java
-public class Dog {
-    private String name;
-    
-    public void setName(String name){
-        this.name = name;
-    }
-    
-    public int getName(){
-        return this.name;
-    }
-}
-```
-
-以上代码针对name这一变量展示了完整的封装。
-
-### *补充：访问修饰符
-
-Java中，可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
-
-- **default** (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。使用对象：类、接口、变量、方法。
-- **private** : 在同一类内可见。使用对象：变量、方法。 **注意：不能修饰类（外部类）**
-- **public** : 对所有类可见。使用对象：类、接口、变量、方法
-- **protected** : 对同一包内的类和所有子类可见。使用对象：变量、方法。 **注意：不能修饰类（外部类）**。
-
-我们可以通过以下表来说明访问权限：
-
-| 修饰符      | 当前类 | 同一包内 | 子孙类(同一包) | 子孙类(不同包) | 其他包 |
-| :---------- | :----- | :------- | :------------- | :------------- | :----- |
-| `public`    | Y      | Y        | Y              | Y              | Y      |
-| `protected` | Y      | Y        | Y              | Y/N[^4]        | N      |
-| `default`   | Y      | Y        | Y              | N              | N      |
-| `private`   | Y      | N        | N              | N              | N      |
-
----
-
-## 类之间的关系
-
-> 理论上，目前为止你就可以直接进行机器人编写，以下关于继承，重写等的操作在机器人实际编写中使用不多。不过我仍然建议你了解一下以下内容。
-
-### 继承
-
-#### 1.概念
-
-继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。以下是便于理解的一个例子:
-
-![img](https://www.runoob.com/wp-content/uploads/2013/12/14B0951E-FC75-47A3-B611-4E1883887339.jpg)
-
-在实际编程中，我们可以把几个功能有重复，或者有相关性的类抽象出一个**父类**，并让**子类**分别继承**父类**，可以提高维护性，代码也更加简洁，提高代码的复用性。
-
-#### 2.Java代码
-
-```Java
-class 父类 {
-}
- 
-class 子类 extends 父类 {
-}
-```
-
-当子类继承这个父类之后，就具有父类当中的属性和方法，子类就不会存在重复的代码。
-
-例如：有一个汽车类和巴士类
-
-```java
-public class Car{
-	private String name;
-    public Car(String name){
-        this.name = name;
-    }
-    public void drive(){
-        System.out.println(name+"开车了"); 
-    }
-}
-```
-
-```java
-public class Bus{
-	private String name;
-    public Bus(String name){
-        this.name = name;
-    }
-   	public void drive(){
-        System.out.println(name+"开车了"); 
-    }
-    public void pay(){
-        System.out.println("你坐上了公交车，付钱！"); 
-    }
-}
-```
-
-那么我们可以提炼出一个父类Vehicle类
-
-```java
-public class Vehicle{
-	private String name;
-    public Vehicle(String name){
-        this.name = name;
-    }
-    public void drive(){
-        System.out.println(name+"开车了"); 
-    }
-}
-```
-
-那么Car类与Bus类就可以这样写
-
-```java
-public class Car extends Vehicle{
-	public Car(String name){
-    	super(name);
-    }
-}
-```
-
-```java
-public class Bus extends Vehicle{
-	public Bus(String name){
-        super(name);
-    }
-    public void pay(){
-        System.out.println("你坐上了公交车，付钱！"); 
-    }
-}
-```
-
-**注意**：super关键字指向父类，相当于父类的this。super()方法则表示调用父类构造函数。
-
-#### 3. 方法的重写(Override)
-
-重写是在继承关系的基础上，重写父类已有的方法，写成一个子类的新方法。在调用子类的该方法时，使用子类的方法而不是父类的方法。
-
-继续以上面的车子的代码为例，以下是重写的一个例子，你可以体会一下其作用：
-
-```java
-public class Bus extends Vehicle{
-	public Bus(String name){
-        super(name);
-    }
-    
-    @Override
-    public void drive(){                         // 重写了父类的drive()方法
-        System.out.println(name+"开车了，开的很慢"); 
-    }
-    
-    public void pay(){
-        System.out.println("你坐上了公交车，付钱！"); 
-    }
-}
-```
-
-这时在使用Bus类的drive方法，就会输出 "开车了，开的很慢"
-
-### 抽象与实现
-
-#### 1.抽象类
-
-在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。
-
-省流：**抽象类**可以不写方法的具体**实现**，只规范他有些什么方法，需要在后续代码中**实现**或**重写**
-
-在Java中，用abstract关键字来声明一个抽象类/函数
-
-```java
-public abstract class Vehicle{
-    private String name;
-    public Vehicle(String name){
-        this.name = name;
-    }
-    // 这是一个抽象方法，在父类中，没有具体实现，需要每个子类各自实现这个方法
-    public abstract void drive(){}
-}
-```
-
-#### 2.重写
-
-在实现中也非常简单，使用@Override关键词来重写方法就可以输入具体实现
-
-```java
-public class Bus extends Vehicle{
-	public Bus(String name){
-        super(name);
-    }
-    
-    @Override
-    public void drive(){                         // 实现了父类的drive()方法
-        System.out.println(name+"开车了，开的很慢"); 
-    }
-    
-    public void pay(){
-        System.out.println("你坐上了公交车，付钱！"); 
-    }
-}
-```
-
-#### 3.接口
-
-如果一个类里面全是抽象的方法，那就是一个**接口**，我们这样来定义一个接口
-
-```java
-[可见度] interface 接口名称 [extends 其他的接口名] {
-        // 声明变量
-        // 抽象方法
-}
-```
-
-+ 接口不能有具体的方法**实现**，也就是说，方法的里面必须是空的（除了带有default的方法）！
-
-+ 接口不能用来**实例化**！必须有其他类来**继承 **(implements)
-
-+ 接口里面除了有default标明的方法，必须在继承时全部实现！
-
-+ 接口可以多继承（同一个类可以继承多个接口）
-
-我们可以把Vehicle抽象成一个接口，大概就像这样：
-
-```java
-public interface Vehicle{
-    private String name;
-    public void drive();
-    public default void pay(){}// 不是所有的载具需要pay，所以若不实现就默认为空
-}
-```
-
-那么Bus的代码就会变成这样：
-
-```java
-public class Bus implements Vehicle{
-	public Bus(String name){
-        super(name);
-    }
-    
-    @Override
-    public void drive(){                         // 实现了父类的drive()方法
-        System.out.println(name+"开车了，开的很慢"); 
-    }
-    
-    @Override
-    public void pay(){
-        System.out.println("你坐上了公交车，付钱！"); 
-    }
-}
-```
-
-那么抽象有什么优点呢，可以方便后续代码的调用和维护，比如**多态**。
-
-### 多态
-
-情景： 我们现在作为一个人，需要去乘坐这些载具了，我们可以自己开车，也可以做公交车（当然，还有很多出行方式）
-
-那么，我们想要去使用载具的行为就像这样
-
-```java
-public class Person{
-    Bus bus = new Bus("bus");
-    Car car = new Car("car");
-	public void go(String choice){
-        switch(choice){
-            case "Car":
-                car.drive();
-            case "Bus":
-                bus.drive();
-        }
-    }
-    public static void main(String[] args){
-        go("Bus");
-    }
-}
-```
-
-你不难发现，这个代码如同答辩，因为每多增加一种出行方式，我们就要在switch例多写一个判断。没有可维护性。
-
-但是如果我们让两个类继承自Vehicle类的话，我们就可以这样写。
-
-```java
-public class Person{
-	public static void go(Vehicle vehicle){
-        vehicle.drive();
-        }
-    }
-	public static void main(String[] args){
-        Bus bus = new Bus("bus");
-        go(bus);
-    }
-}
-```
-
-Bus作为一个Vehicle的子类，可以作为这里参数的Vehicle类型直接传入，并调用driv()方法。
-
-当然，如果有其他载具，只需要让他继承Vehicle类，不需要改变这里人的逻辑，增强了可延展性。
-
-此外，如果不同载具的drive逻辑不同，只需要在继承时重写该方法即可，通过调用vehicle.drive()可以做到不同载具的不同逻辑，此处就不赘述了。
-
----
-
-## 练习
-
-以下是一个网上摘抄下来的简单的类，我已经好心地保留了注释，看看这个类有些什么功能
-
-**Employee.java**
-
-```java
-import java.io.*;
- 
-public class Employee {
-    private String name;
-    private int age;
-    private String designation;
-    private double salary;
- 
-    // Employee 类的构造器
-    public Employee(String name) {
-        this.name = name;
-    }
- 
-    // 设置 age 的值
-    public void setAge(int age) {
-        this.age = age;
-    }
- 
-    // 获取 age 的值
-    public int getAge() {
-        return age;
-    }
- 
-    // 设置 designation 的值
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
- 
-    // 获取 designation 的值
-    public String getDesignation() {
-        return designation;
-    }
- 
-    // 设置 salary 的值
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
- 
-    // 获取 salary 的值
-    public double getSalary() {
-        return salary;
-    }
- 
-    // 打印信息
-    public void printEmployee() {
-        System.out.println(this);
-    }
- 
-    // 重写 toString 方法
-    @Override
-    public String toString() {
-        return "名字: " + name + "\n" +
-               "年龄: " + age + "\n" +
-               "职位: " + designation + "\n" +
-               "薪水: " + salary;
-    }
-}
-```
-
-猜测一下在另一个文件的main方法里输入这些内容，会输出什么
-
-**EmployeeTest.java**
-
-```java
-import java.io.*;
- 
-public class EmployeeTest {
+// 文件名： HelloWorld.java
+public class HelloWorld {
+    /* 第一个Java程序
+     * 它将输出字符串 Hello World
+     */
     public static void main(String[] args) {
-        // 使用构造器创建两个对象
-        Employee empOne = new Employee("RUNOOB1");
-        Employee empTwo = new Employee("RUNOOB2");
- 
-        // 调用这两个对象的成员方法
-        empOne.setAge(26);
-        empOne.setDesignation("高级程序员");
-        empOne.setSalary(1000);
-        empOne.printEmployee();
- 
-        empTwo.setAge(21);
-        empTwo.setDesignation("菜鸟程序员");
-        empTwo.setSalary(500);
-        empTwo.printEmployee();
+        System.out.println("Hello World");  // 输出 Hello World
     }
 }
 ```
 
----
+我们可以分析一下这段代码：
 
-[^1]: 关于访问修饰符的介绍，见 *补充：访问修饰符
-[^2]: 注意：参数变量有作用域，只能在方法内部使用
-[^3]: 构造方法的名字必须和类名保持一致，然而可以利用参数的不同来实现多个构造方法，这涉及方法的重载(Overload)
-[^4]: 这取决于基类是否在同一个包
+1. **文件名**：源文件名必须和类名相同，文件名和类名不相同会导致编译错误。文件的后缀为 `.java`。切记 Java 是**大小写敏感**的，也就是说 `hello` 和 `Hello` 是不同的。
+2. **类名**：所有类名的首字母都应该大写。如果类名由若干单词组成，那么每个单词的首字母应该大写（大驼峰命名），例如 `MyFirstJavaClass`。
+3. **方法名**：所有的方法名的首字母都应该小写。如果方法名含有若干单词，则后面的每个单词首字母大写（小驼峰命名）,例如 `myFirstMethod`。
+4. **主方法入口**：所有的 Java 程序由 `public static void main(String[] args)` 方法开始执行。
+
+```mermaid
+block
+   columns 6
+   
+   explain1["访问修饰符"]
+   explain2["非访问修饰符"]
+   explain3["返回类型"]
+   explain4["方法名"]
+   explain5["参数列表"]:2
+
+   accessModifier["<code>public</code>"]
+   staticModifier["<code>static</code>"]
+   returnType["<code>void</code>"]
+   functionName["<code>main</code>"]
+   parameterClass["<code>(String[]</code>"]
+   parameterName["<code>args)</code>"]
+
+   space:4
+   explain6["参数类型"]
+   explain7["参数名称"]
+
+   classDef transBg fill:transparent,stroke:transparent;
+   class accessModifier transBg
+   class staticModifier transBg
+   class returnType transBg
+   class functionName transBg
+   class parameterClass transBg
+   class parameterName transBg
+```
+
+## 2 变量
+
+变量是存储某个类型的数据的有名字的容器。
+
+### 2.1 基本数据类型
+
+Java 内置的数据类型有很多种，可以大致分为几大类：整数，小数，字符，布尔值：
+
+1. **整数**：包括 `byte`、`short`、`int`、`long`。可储存的数字大小依次增加，相应地，占用的内存依次增多。自己编写程序时往往不会考虑内存问题，通常用 `int` 作为整数类型。
+2. **小数**：包括 `float`、`double`。精度依次增加，相应地，占用的内存依次增多。自己写程序时，通常用 `double` 作为小数类型。
+3. **字符**：`char`。储存一个单一的 16 位 Unicode 字符。
+4. **布尔值**：`boolean`。只有两个取值：`true` 和 `false`。
+
+这些基本数据类型不被视为对象储存。
+
+在此之外，`String` 是任意长度的字符串，但它并不是基本数据类型，因此其实例被视为对象储存。
+
+### 2.2 变量声明
+
+```
+type identifier [= value][, identifier [= value] ...] ;
+```
+
+- `type`：数据类型。
+- `identifier`：变量名。变量名仅可使用以下字符：`a-z`、`A-Z`、`0-9`、`$`以及`_`，并且不能以数字开头。
+
+在声明变量是，可以使用逗号 `,` 隔开来声明多个同类型变量。
+
+在声明一个变量时，可以为它加上初始值，也可以不加（不加初始值默认为 `0`、`null`、`false` 等）。
+
+```java
+int a = 3;  // 声明变量a，类型为int，初始值为3
+double b;  // 声明变量b，类型为double，不赋予初始值
+```
+
+想要修改变量时，不需要再写数据类型。
+
+```java
+a = 4;  // 把变量a修改为4
+```
+
+除此之外，还有参数变量，静态变量，局部变量等概念，这里不再赘述，读者可自行了解。
+
+### 2.3 常量声明
+
+在语句最前面加上 `final` 关键词，通常与 `static` 关键词一起使用（表示该常量属于类而不属于对象）。
+
+```java
+static final int MAX_SIZE = 100;
+```
+
+注意常量命名时用**全大写字母**（虽然不这么做也不会报错，但是出于代码规范，强烈建议全大写）。
+
+## 3 循环
+
+### 3.1 `while`
+
+```java
+while ( condition ) {
+    // 循环体
+}
+```
+
+只要 `condition` 语句结果为 `true`，循环就会一直执行下去。
+
+例如这个累加的代码：
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        int x = 10;
+        while (x < 20) {
+            System.out.print("value of x : " + x);
+            x++;  // 等价于 x = x + 1
+            System.out.print("\n");
+        }
+    }
+}
+```
+
+以上实例编译运行结果如下：
+
+```
+value of x : 10
+value of x : 11
+value of x : 12
+value of x : 13
+value of x : 14
+value of x : 15
+value of x : 16
+value of x : 17
+value of x : 18
+value of x : 19
+```
+
+### 3.2 `do-while`
+
+`do-while` 循环和 `while` 循环相似。不同的是，对于 `while` 语句而言，如果不满足条件，则不能进入循环；而 `do-while` 语句至少会执行一次循环体，即使条件不满足。
+
+```java
+do {
+    // 循环体
+} while ( condition );
+```
+
+如果条件的值为 `true`，则语句块一直执行，直到布尔表达式的值为 `false`。
+
+> [!TIP]
+> 因为条件在循环体的后面，所以语句块在检测条件之前已经执行了。
+
+### 3.3 `for`
+
+```java
+for (init; condition; update) {
+    // 循环体
+}
+```
+
+`for` 循环的执行顺序如下：
+
+1. 执行初始化步骤（`init`），用来初始化循环控制变量。在初始化时仅可声明一种变量类型，但可初始化一个或多个循环控制变量，也可以是空语句。
+2. 检测条件结果（`condition`）。如果为 `true`，循环体被执行。如果为`false`，循环终止，开始执行循环体后面的语句。
+3. 执行更新步骤（`update`），用来更新循环控制变量。
+4. 跳转到第2步继续。
+
+以下是一个常见的 `for` 循环，其中循环体被执行10次：
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        for (int x = 0; x < 10; x++) {
+            System.out.print("value of x : " + x );
+            System.out.print("\n");
+        }
+    }
+}
+```
+
+输出：
+
+```
+value of x : 0
+value of x : 1
+value of x : 2
+value of x : 3
+value of x : 4
+value of x : 5
+value of x : 6
+value of x : 7
+value of x : 8
+value of x : 9
+```
+
+`for` 循环还有一种加强写法，用于遍历可迭代对象（如数组）：
+
+```java
+for (element : iterable) {
+    // 循环体
+}
+```
+
+以下是一个例子，循环遍历了一个数组：
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+
+        for (int x : numbers){
+            System.out.print(x);
+            System.out.print(",");
+        }
+    }
+}
+```
+
+输出
+
+```
+10,20,30,40,50,
+```
+
+### 3.4 `break` 与 `continue`
+
+`break` 主要用在循环语句或者 `switch` 语句中，用来跳出整个语句块。`break` 的用法很简单，就是循环结构中的一条语句：
+
+```java
+break;
+```
+
+示例：
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+
+        for (int x : numbers) {
+            if (x == 30) {
+                // x 等于 30 时跳出循环
+                break;
+            }
+            System.out.print( x );
+            System.out.print("\n");
+        }
+    }
+}
+```
+
+`continue` 适用于任何循环控制结构中。作用是让程序立刻跳转到下一次循环的迭代。
+
+在 `for` 循环中，continue 语句使程序立即跳转到更新语句。
+
+在 `while` 或者 `do-while` 循环中，程序立即跳转到布尔表达式的判断语句。
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+
+        for (int x : numbers) {
+            // 当x=30时，直接跳到下一次循环
+            if (x == 30) {
+                continue;
+            }
+            System.out.print(x);
+            System.out.print("\n");
+        }
+    }
+}
+```
+
+## 4 条件
+
+### 4.1 `if`
+
+```java
+if ( condition ) {
+   // 如果 condition 结果为 true 将执行的语句
+}
+```
+
+`if` 语句后面可以跟 `else` 语句。当 `if` 语句的条件结果为 `false` 时，`else` 语句块会被执行。
+
+```java
+if ( condition ) {
+   // 如果 condition 的结果为 true
+} else {
+   // 如果 condition 的结果为 false
+}
+```
+
+当然，也有 `else if` 语句。注意，若先前的判断有 `true`，则不会执行后面的 `else if` 判断。任何 `else` 和 `else if` 语句只会在先前所有判断都为 `false` 时执行。
+
+以下是一个简单的例子：
+
+```java
+public class Test {
+    public static void main(String args[]) {
+        int x = 30;
+
+        if (x == 10) {
+            System.out.print("Value of X is 10");
+        } else if (x == 20) {
+            System.out.print("Value of X is 20");
+        } else if (x == 30) {
+            System.out.print("Value of X is 30");
+        } else {
+            System.out.print("以上都不是");
+        }
+    }
+}
+```
+
+### 4.2 `switch-case`
+
+`switch-case` 语句判断一个变量与一系列值中某个值是否相等，每个值称为一个分支。
+
+```java
+switch (expression) {
+    case value1:
+       // body1
+       break;
+    case value2:
+       // body2
+       break;
+    ...
+    default:
+       // body-default
+}
+```
+
+`switch-case` 基本原理如下：
+
+```mermaid
+flowchart TB
+
+    start((开始)) --> exp[获取表达式结果 <code>expression</code>]
+    exp --> case1{<code>expression == value1</code> ?}
+    case1 --真--> body1[执行 <code>body1</code>]
+    case1 --假--> case2{<code>expression == value2</code> ?}
+    case2 --真--> body2[执行 <code>body2</code>]
+    case2 --假--> case3{<code>expression == value3</code> ?}
+    case3 --真--> body3[执行 <code>body3</code>]
+    case3 --假--> caseInf{...}
+    caseInf --所有case都为假--> bodyDef[执行 <code>body-default</code>]
+    body1 --> ending((结束))
+    body2 --> ending((结束))
+    body3 --> ending((结束))
+    bodyDef --> ending((结束))
+    
+```
+
+- `switch` 语句可以拥有多个 `case` 语句。每个 `case` 后面跟一个要比较的值和冒号。
+- `case` 语句中的值的数据类型必须与变量的数据类型相同，而且只能是常量或者字面常量。
+- 当变量的值与 `case` 语句的值相等时，那么 `case` 语句之后的语句开始执行，直到 `break` 语句出现才会跳出 `switch` 语句。
+- 当遇到 `break` 语句时，`switch` 语句终止。程序跳转到 `switch` 语句后面的语句执行。
+- `case` 语句并非必须要包含 `break` 语句。如果没有 `break` 语句出现，程序会继续执行下一条 `case` 语句，直到出现 `break` 语句。
+- `switch-case` 可以包含一个 `default` 分支，该分支一般是 `switch-case` 的最后一个分支（可以在任何位置，但建议在最后一个）。`default` 在没有任何一个 `case` 语句的值和变量值相等的时候执行。`default` 分支不需要 `break` 语句。
+
+> [!IMPORTANT]
+> `switch-case` 执行时，一定会先进行匹配，匹配成功返回当前 `case` 的值，再根据是否有 `break`，判断是否继续输出，或是跳出判断。**
+
+以下是一个例子：
+
+```java
+public class Test {
+    public static void main(String args[]) {
+        char grade = 'C';
+
+        switch (grade) {
+            case 'A':
+                System.out.println("优秀"); 
+                break;
+            case 'B':
+            case 'C':
+                System.out.println("良好");
+                break;
+            case 'D':
+                System.out.println("及格");
+                break;
+            case 'F':
+                System.out.println("你需要再努力努力");
+                break;
+            default:
+                System.out.println("未知等级");
+            }
+        System.out.println("你的等级是 " + grade);
+    }
+}
+```
+
+以上代码编译运行结果如下：
+
+```
+良好
+你的等级是 C
+```
+
+如果 `case` 语句块中没有 `break` 语句时，匹配成功后，从当前 `case` 开始，后续所有 `case` 的值都会输出。
+
+```java
+public class Test {
+    public static void main(String args[]) {
+        int i = 1;
+        switch (i) {
+            case 0:
+                System.out.println("0");
+            case 1:
+                System.out.println("1");
+            case 2:
+                System.out.println("2");
+            default:
+                System.out.println("default");
+        }
+    }
+}
+```
+
+以上代码编译运行结果如下：
+
+```
+1
+2
+default
+```
+
+> [!IMPORTANT]
+> - 除非特意设计，一定要记得在 `case` 末尾加上 `break`;
+> - 无论是否有 `default` 的处理逻辑，**都建议加上 `default` 分支**，哪怕里面是空的

@@ -1,166 +1,181 @@
-# Course 0
+# Course 0 - 环境配置
 
-> Revision 1.2: Changed some sentences with logical faults. Added Chinese translation.
->
-> Revision 1.1: Updated “Git Credentials” part.
+## 0 目标
 
-## Prerequisites
+这份文档结束，你应该能做到：
 
-> **Attention**: Websites mentioned in this document are usually hard to access from mainland China due to the restrictions of the Great Firewall (GFW). So it’s optimal to have a VPN service or proxy server set up on your computer to get the best connectivity. VPN is usually system-wide and doesn’t require much attention once it’s on. So here in this document we will only explain how to set up proxy in each tool.
+1. 有一套能访问国际开发资料的网络环境（俗称「梯子」）;
+2. 装好 FTC 机器人编程的官方 IDE——Android Studio;
+3. 拥有自己的 GitHub 账号，并找到 19726 的仓库。
 
-> For FTC season 2024-2025 “INTO THE DEEP”, the `compileSdkVersion` is 30, and the `ndkVersion` is 21.3.6528147.
->
-> The latest Build-Tools major version is 35 and the latest Build-Tools version compatible with the SDK is 35.0.2.
->
-> TODO: update these numbers here and in the document according to FTC SDK and Google.
+这三样东西将贯穿你整个 FTC 生涯（如果你参加 FTC 的话）。
 
-You will need:
+即使你不参加比赛，拥有一个梯子以及掌握 GitHub 的使用也会对你未来的学习大有帮助。
 
--  A laptop (Windows, macOS, and Linux are all accepted) with these software installed:
+## 1 准备工作
+
+> ![NOTE]
+> 由于中国防火墙 (GFW) 的限制，本文档中提到的网站通常很难从中国大陆访问。因此，最好在你的计算机上设置 VPN 服务或代理服务器以获得最佳连接。VPN 通常覆盖整个系统，一般直接启用即可。因此，在本文档中，我们将仅解释如何为每个软件分别设置代理。
+
+为了开始 FTC 开发，你将需要：
+
+- 安装了以下软件的笔记本电脑（Windows、macOS 和 Linux 均可）：
   - Git
-  - JDK 17+
+  - JDK 21+
   - Android Studio
-- A GitHub account
+- 一个 GitHub 帐户
 
-We will go through them one by one, but we will talk about proxy settings first since it’s commonly used in the follow-up process.
+我们将逐一介绍它们，但我们将首先介绍代理设置，因为它在后续过程中经常会用到（具体原因在上面引用部分）。
 
-### Proxy setting
+### 1.1 代理设置
 
-A proxy server is a intermediate server that takes your web request and forward it to the destination server. Imagine a giant wall separating you and your friend, and there’s a small delivery table that can magically phase through the wall. You put your gift on the table and the delivery table sends it to your friend for you. Your friend can now receive your gift and send you a thank you note, also through the delivery table. In this situation, your friend is the destination server that you want to reach, and the delivery table is the proxy server.
+代理服务器是一种中间服务器，它接收你的 Web 请求并将其转发到目标服务器。想象一下，你和你的朋友之间有一堵巨大的墙，而一张小小的送货台可以神奇地穿过这堵墙。你将礼物放在桌子上，送货台会帮你将礼物送到你的朋友那里。你的朋友可以通过送货台收到你的礼物，并用这个送货台回寄一封感谢信。在这个情境中，你的朋友就是你想要到达的目标服务器，而送货台就是代理服务器。
 
-In real life, there can be more than one proxy server between your and your destination. But as long as you set up the beginning of the server chain, you can easily go through all the process.
+在现实生活中，你和你的目标服务器之间可能会有多个代理服务器，但你只需要在你的电脑上设置整个服务器链的开头。
 
-Here I will introduce two main proxy software, Clash and V2ray. Despite their completely different look, they are pretty similar in usage. Both of them require you to find or purchase your own nodes before proceeding. It’s a complicated process, and I recommend asking someone that can do it for you (if you don’t want to find the nodes yourself).
+> [!NOTE]
+> 友情提示
+>
+> - 请合理使用梯子，健康上网；
+> - 不要在不明节点上登录网银、社交等重要账号。
 
-There are two ways to use such proxy software:
+#### 1.1.1 安装与配置
 
-1. **System-wide.** Putting proxy software into system-wide mode will force all traffic go through the proxy. The advantages are that you don’t need to worry about forgetting to configure a specific software and have a consistent network environment, but this method could slow down the request of some Chinese websites and would probably use up the token you’ve found or purchased pretty fast.
+这里我介绍两款主流代理软件，Clash 和 V2ray。虽然外观完全不同，但使用起来却非常相似。两者都需要你自己寻找或购买节点才能继续操作。这是一个复杂的过程，我建议请人帮你做这件事（如果你不想自己寻找节点的话）。
 
-   To use the system-wide setting of your software on Windows for Clash, right click on the tray icon and check “System Proxy”. For V2rayN, right click on the tray icon, go to the second menu from top down, and select “Global”.
+此类代理软件的使用方法有两种：
 
-2. **Per-software. [recommended]** This method means deciding whether or not to use proxy for each software. You can turn off proxy for a specific software without affecting others, but is could be a hassle to remember to set them all up.
+**系统模式。** 将代理软件设置为系统模式将强制所有流量通过代理。优点是你不必担心忘记配置特定软件并拥有一致的网络环境，但这种方法可能会减慢某些中国网站的请求速度，并且可能会很快用完你找到或购买的令牌。
 
-   Before explaining how to set up proxy for each software, I shall mention some basic concepts. A proxy server has its **address** and **port**. An address is like to find the server. It can be a dot separated string like `192.168.1.1` or normal websites like `google.com`. A port is where to enter the server. Different ports are like different departments and they serve different roles, like port `80` is usually used for http web hosting and `25565` for Minecraft servers. (I’m sure that some of you play Minecraft...)
+以 Windows 为例（其它系统自行百度）：对于 Clash，请右键单击托盘图标并选中“系统代理”。对于 V2rayN，请右键单击托盘图标，转到从上到下的第二个菜单，然后选择“全局”。
 
-   Back to proxy, Clash has a default port of `7890`, and V2ray has a default port of `10809`, and they both use your own computer as a proxy server, which has a loopback address of `127.0.0.1`. So in the proxy setting of most software, you need to select “HTTP” protocol, then either put in the address and port separately or bind them together using the format `127.0.0.1:7890` or `127.0.0.1:10809`, depending on the settings page of the software.
+**为每个软件单独设置。[推荐]** 这种方法意思是由你一一决定是否为单个软件使用代理。你可以关闭特定软件的代理而不会影响其他软件，但为所有软件设置代理可能会很麻烦。
 
-And voila! You now have successfully set up a proxy!
+在介绍如何用这种方法设置代理之前，我先提一些基本概念。代理服务器有其**地址**和**端口**。地址，顾名思义，就像是街道名和楼栋号。它可以是一个由数字和点（英文句号）组成的字符串，如`192.168.1.1`，或者一个普通的网址，如`google.com`。端口就像进入某幢楼特定房间的门。不同的端口就像不同的职能部门，它们发挥着不同的作用，比如端口`80`通常用于 http 网站托管，而`25565`通常用于MC服务器。（我相信你们中肯定有人玩MC……）
 
-### Git
+回到设置代理上来，Clash 的默认端口是`7890` ，V2ray 的默认端口是`10809` 。它们都是用你自己的电脑作为代理服务器，也就是说代理服务器的地址是`127.0.0.1`（本机回环地址） 。所以在大部分软件的代理设置中，只需选择“HTTP”协议，然后根据软件的设置页面，单独输入地址和端口，或者是将两者连在一起填入（格式为“`地址:服务器`”，英文冒号，如`127.0.0.1:7890`或`127.0.0.1:10809`）。
 
-Git is a Version Control System (VCS), which stores the current project folder as snapshots as you change the file contents. Learn more on Git in the book in the laboratory.
+各种软件有不同的代理配置方式。对于现代浏览器（基于Chromium或Firefox），[Zero Omega 插件](https://github.com/zero-peak/ZeroOmega)提供了代理配置支持。
 
-You can choose not to download Git separately and use Android Studio’s built-in one. But I recommend a standalone install.
+#### 1.1.2 验证
 
-You can download Git installer here: https://git-scm.org (Chinese mirror, only Windows: https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/)
+| 检查项     | 方法                                      | 通过标准                     |
+| ---------- | ----------------------------------------- | ---------------------------- |
+| 浏览器     | 打开 https://www.google.com               | 能打开搜索首页               |
+| 官方下载站 | 打开 https://developer.android.com/studio | 能看到 Android Studio 下载页 |
+| GitHub     | 打开 https://github.com                   | 能打开且头像、图片正常       |
 
-If you’re trying to use Git outside of Android Studio, I strongly recommend you add Git to your PATH environment variable. Please search for how to do it on the Internet by yourself as different system may have different conditions.
+恭喜你！你现在已经成功设置了代理！
 
-#### Git Credentials
+### 1.2 Git
 
-Once Git is installed, you will need to set up a username and email for your commits. Launch whichever terminal that can access Git via command line (Git Bash, Windows Terminal, bash, zsh, ...), and put in these two lines of code: (replace `your_username` and `your_email` with your username and email)
+Git 是一个版本控制系统 (VCS)，它会在你更改文件内容时将当前项目文件夹存储为类似快照的形式。你可以选择不单独下载 Git，而使用 Android Studio 的内置版本，但我建议独立安装一个。
+
+你可以在这里下载 Git 安装程序：[https://git-scm.org](https://git-scm.org)。
+
+或者你也可以从教育网联合镜像站选择任一镜像站点下载 Windows 安装包：[https://https://mirrors.cernet.edu.cn/list/git-for-windows](https://https://mirrors.cernet.edu.cn/list/git-for-windows)。
+
+如果你尝试在 Android Studio 之外使用 Git，我强烈建议你将 Git 添加到你的 PATH 环境变量中。请自行在互联网上搜索如何操作，因为不同的系统操作可能稍有不同。
+
+#### 1.2.1 Git 凭据
+
+安装 Git 后，你需要为之后的Git提交设置用户名和邮箱。启动一个可以通过命令行访问 Git 的任何终端（Android Studio内置终端、Git Bash、Windows Terminal、bash、zsh 等），然后输入以下两行代码：（将用户名和邮箱替换为你的GitHub用户名和邮箱，保留空格）
 
 ```sh
-git config --global user.name your_username
-git config --global user.email your_email
+git config --global user.name 你的GitHub用户名
+git config --global user.email 你的GitHub邮箱
 ```
 
-#### Git Proxy
+#### 1.2.2 Git 代理
 
-Once you have set up the credentials, you’d better add a proxy. This can be done through two simple lines of code. (replace `address` and `port` with your proxy server’s address and port)
+设置完凭据后，最好添加一个代理。这可以用两行简单的代码完成。（将地址和端口替换为你的代理服务器的地址和端口，保留空格，使用英文标点）
 
 ```sh
-git config --global http.proxy http://address:port
-git config --global https.proxy http://address:port
+git config --global http.proxy http://地址:端口
+git config --global https.proxy http://地址:端口
 ```
 
-### JDK
+#### 1.2.3 Git 签名（可选）
 
-JDK stands for Java Development Kit, which currently has multiple distributions based on the open-source project OpenJDK. Long Term Support (LTS) versions of JDK are recommended (modern versions include JDK 17 and JDK 21). You can choose whichever distribution and LTS version you like below:
+如果你想要为你的提交再加一层保险（证明这次提交确实为你所著），可以选择添加签名。具体操作可参见[GitHub官方文档](https://docs.github.com/zh/authentication/managing-commit-signature-verification)。
 
-| Distribution                | Distributor | JDK 21                                                       | JDK 17                                                       |
-| --------------------------- | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Oracle JDK                  | Oracle      | https://www.oracle.com/hk/java/technologies/downloads/#java21 | https://www.oracle.com/java/technologies/downloads/#java17   |
-| Microsoft Build of OpenJDK  | Microsoft   | https://learn.microsoft.com/java/openjdk/download#openjdk-21 | https://learn.microsoft.com/java/openjdk/download#openjdk-17 |
-| Eclipse Temurin             | Eclipse     | https://adoptium.net/temurin/releases/?package=jdk&version=21 | https://adoptium.net/temurin/releases/?package=jdk&version=17 |
-| Amazon Corretto             | Amazon      | https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html | https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html |
-| Azul Zulu **[recommended]** | Azul        | https://www.azul.com/downloads/?version=java-21-lts&package=jdk#zulu | https://www.azul.com/downloads/?version=java-17-lts&package=jdk#zulu |
+### 1.3 JDK
 
-Below are distributions from Chinese companies or mirrors of previous distributions for downloading JDK in mainland China.
+JDK 是 Java 开发工具包（Java Development Kit）的缩写，目前有多个基于开源项目 OpenJDK 的发行版。建议使用 Java 的长期支持（LTS）版本（较新的版本包括 Java 25 和 Java 21）。你可以在下面选择你喜欢的任何发行版和 LTS 版本：
 
-| Distribution                                                 | Distributor | JDK 21                                               | JDK 17                                               |
-| ------------------------------------------------------------ | ----------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| Dragonwell                                                   | Alibaba     | https://dragonwell-jdk.io/#/index                    | Not available                                        |
-| Eclipse Temurin (mirror from Tsinghua Tuna) **[recommended]** | Eclipse     | https://mirror.tuna.tsinghua.edu.cn/Adoptium/21/jdk/ | https://mirror.tuna.tsinghua.edu.cn/Adoptium/17/jdk/ |
+| 发行版                     | 分发商  | Java 25                          | Java 21                          |
+| -------------------------- | ------- | -------------------------------- | -------------------------------- |
+| Oracle JDK                 | 甲骨文  | [下载站点][oracle-jdk-25]        | [下载站点][oracle-jdk-21]        |
+| Microsoft Build of OpenJDK | 微软    | [下载站点][microsoft-openjdk-25] | [下载站点][microsoft-openjdk-21] |
+| Adoptium Temurin           | Eclipse | [下载站点][temurin-jdk-25]       | [下载站点][temurin-jdk-21]       |
+| Azul Zulu **[推荐]** | Azul    | [下载站点][zulu-25]              | [下载站点][zulu-21]              |
+| Huawei Build of OpenJDK    | 华为    | [下载站点][huawei-openjdk-25]    | [下载站点][huawei-openjdk-21]    |
 
-### Android Studio
+[oracle-jdk-25]: https://www.oracle.com/java/technologies/downloads/#java25
+[oracle-jdk-21]: https://www.oracle.com/java/technologies/downloads/#java21
+[microsoft-openjdk-25]: https://learn.microsoft.com/java/openjdk/download#openjdk-25
+[microsoft-openjdk-21]: https://learn.microsoft.com/java/openjdk/download#openjdk-21
+[temurin-jdk-25]: https://adoptium.net/temurin/releases/?package=jdk&version=25
+[temurin-jdk-21]: https://adoptium.net/temurin/releases/?package=jdk&version=21
+[zulu-25]: https://www.azul.com/downloads/?version=java-25-lts&package=jdk#zulu
+[zulu-21]: https://www.azul.com/downloads/?version=java-21-lts&package=jdk#zulu
+[huawei-openjdk-25]: https://mirrors.huaweicloud.com/openjdk/25.0.2/
+[huawei-openjdk-21]: https://mirrors.huaweicloud.com/openjdk/21.0.2/
 
-Our robot control system is essentially an android device, so we will use Google’s official Android IDE, Android Studio, for programming our robot.
+### 1.4 Android Studio
 
-1. Download the Android Studio installer from here: https://developer.android.com/studio (Chinese mirror site: https://developer.android.google.cn/studio)
+我们的机器人控制系统本质上是一个安卓设备，因此我们将使用 Android Studio（Google 的官方安卓 IDE）对我们的机器人进行编程。
 
-2. Start the installer and go through the setup process. Unselect “Android Virtual Device” for minimal storage usage.
-
-3. When install has finished, launch your Android Studio. After choosing if you want to share your information with Google, you’ll be greeted with the Setup Wizard. If your proxy server is off or isn’t system-wide, you’ll probably see an error popup saying “Unable to access Android SDK add-on list”. In that case, turn on your proxy server first, click “Setup Proxy”, and refer to the previous section for proxy setting. If you don’t see the popup or you have finished proxy setting, click “Next”.
-
-4. On the next page, select “Standard” if you **don’t care your disk space being eaten up by Android Studio**, click “Next” and jump to step 6. Otherwise, select “Custom” and click “Next”.
-
-5. On the next page, leave only “Android SDK” and “Android API 35” selected. Choose a path with **no Chinese characters** and sufficient for at least **three times** the size of the downloaded files. When all these are finished, click “Next”, and click “Next” again.
-
-6. Now you can check all the components you wish to install. If there’s no mistake, click “Next” to show the licenses. Agree all of them and click “Finish”.
-
-7. Wait for the download to complete, and click “Finish”. Next you will be greeted with the Welcome screen. Click “More Actions” under the square “Open” button, and click “SDK Manager”.
-
-8. When the SDK Manager shows up, uncheck “Hide Obsolete Packages” and check “Show Package Details”. Then follow this list for things to check on the three tabs (“SDK Platforms”, “SDK Tools”, “SDK Update Sites”), and leave everything else unchecked:
+1. 从这里下载 Android Studio 安装程序：[https://developer.android.com/studio](https://developer.android.com/studio)。Google 官方也提供中文站点：[https://developer.android.google.cn/studio](https://developer.android.google.cn/studio)。
+2. 启动安装程序并完成设置过程。取消选择“Android Virtual Device”以压缩硬盘用量，其余可保持默认。
+3. 安装完成后，启动 Android Studio。按需选择是否要共享Google信息，之后你将看到安装向导。如果你的代理服务器已关闭或者不是系统模式，你可能会看到一个错误弹窗，提示“Unable to access Android SDK add-on list”。在这种情况下，请先打开代理服务器，点击“Setup Proxy”，然后参考前文进行代理设置。如果你没有看到弹出窗口或者你已完成代理设置，请点击“Next”。
+4. 在下一页中，如果你**不介意你的硬盘空间被 Android Studio 占满**，请选择“Standard”，然后单击“Next”并跳至步骤 6。否则，选择“Custom”并单击“Next”。
+5. 在下一个页面中，只保留“Android SDK”和“Android API 35”的选项，选择一个**没有中文且没有空格的路径**，并且确保所选盘符（即C盘、D盘等）有比下载文件大至少**三倍**的空闲空间，完成这些之后，点击“Next”，然后再次点击“Next”。
+6. 现在你可以检查所有要安装的组件。确认无误后，请单击“Next”显示许可证。同意所有许可证，然后单击“Finish”。
+7. 等待下载完成，点击“Finish”。接下来，你将看到欢迎屏幕。点击方形“Open”按钮下方的“More Actions”，然后点击“SDK Manager”（SDK 管理器）。
+8. 当 SDK 管理器出现时，取消选中“Hide Obsolete Packages”并选中“Show Package Details”。然后按照下面的列表勾选三个选项卡（“SDK Platforms”、“SDK Tools”、“SDK Update Sites”）中的项目，并取消勾选其他所有项目：
 
    **SDK Platforms**:
 
-   - “Android SDK Platform 29”
+   - “Android SDK Platform 30”
 
    **SDK Tools**:
 
-   - “29.0.3” under “Android SDK Build Tools 35”
-   - “21.3.6528147” under “NDK (Side by Side)”
+   - “Android SDK Build Tools 37” 下的 “30.0.3”
+   - “NDK (Side by Side)” 下的 “21.3.6528147”
    - “Android SDK Platform-Tools”
    - “Android SDK Tools (Obsolete)”
+9. 点击“OK”，再次点击“OK”，等待下载完成，点击“Finish”。现在你已经成功设置了 Android Studio ，可以在 FTC 中进行编程工作了。
 
-9. Click “OK”, “OK” again, wait for the download to finish, and click “Finish”. Now you have successfully set up your Android Studio for coding in FTC.
+### 1.5 GitHub 帐户
 
-### GitHub account
+GitHub 是一个成熟的代码托管平台，FTC 的官方 SDK 就存放在 GitHub 上。因此，为了方便起见，我们也选择将代码托管在 GitHub 上。我们的代码存储在我们团队自己的“组织”（一组开发人员共享的帐户）中，你需要创建自己的 GitHub 帐户才能加入该组织。
 
-GitHub is a well-established code hosting platform, where FTC stores their official SDK. As a result, we choose to host our code on GitHub as well for convenience. Our code is stored in our team’s own “organization” (an account shared by a group of developers), and you need to create your own GitHub account to join the organization.
+注册 GitHub 账户需要使用浏览器。由于 GitHub 的服务器位于海外，直接连接速度会非常慢。因此，你可以使用上文提到的扩展程序为浏览器设置代理。
 
-For signing up a GitHub account, you need to use a browser. Since GitHub’s servers sit overseas, it will be very slow to directly connect to them. So you can use the extension from this link to set up proxy for your browser: https://proxy-switchyomega.com/
+## 2 在你的第一堂课之前
 
-## Before your first lesson
+### 2.1 加入 GitHub 组织
 
-### Join the GitHub organization
+1. 将你 GitHub 账户绑定的邮箱地址发送给编程组管理员。
+2. 等待组织邀请发送到你的收件箱，点击邮件中的链接加入组织[@FFFabulousRobotics](https://github.com/FFFabulousRobotics)。
 
-1. Send the email address linked to your GitHub account to the administrator of coding team.
-2. Wait for the organization invitation to be sent to your email inbox and click on the link in the email to join the organization [@FFFabulousRobotics](https://github.com/FFFabulousRobotics).
+### 2.2 克隆代码项目
 
-### Clone the code project
+1. 启动你的Android Studio。
+2. 点击“Get from VCS”。
+3. 如果你还没有安装 Git，可以点击右侧的“Download and Install”进行安装。记得为 Git 设置代理。（之前讨论过，请参阅[先决条件 &gt; Git &gt; Git 代理](#git-代理)）
+4. 点击左侧的“GitHub”。
+5. 点击“Log In via GitHub...”
+6. 在弹出的浏览器中点击“Authorize in GitHub”。
+7. 输入你的账号密码。
+8. 等待身份验证完成并关闭浏览器窗口。
+9. 现在在列表中找到“FFFabulousRobotics/FTC-2026-2027”并选择要存储文件的目录。
+10. 点击“Clone”。
+11. 克隆完成后，项目将自动打开，你可以继续下一部分。如果系统提示你信任该项目，请单击“Trust Project”。
 
-1. Launch your Android Studio.
-2. Click on “Get from VCS”.
-3. If you haven’t installed Git, you can click on “Download and Install” on the right to install it. Remember to set up proxy for git. (previously discussed, see [Prerequisites > Git > Git Proxy](#Git-Proxy))
-4. Click “GitHub” on the left.
-5. Click “Log In via GitHub...”
-6. Click “Authorize in GitHub” in the browser popped up.
-7. Enter your credentials.
-8. Wait for the authentication process to complete and close the browser window.
-9. Now find “FFFabulousRobotics/FTC-2024-2025” in the list and choose the directory where you want to store the files.
-10. Click “Clone”.
-11. Once the clone has finished, the project will automatically open, and you can proceed to the next section. If you are prompted to trust the project, click on “Trust Project”.
+### 2.3 同步代码项目
 
-### Sync the code project
+当你打开 FTC 项目时，Gradle 同步实际上已经开始。由于我们已修改了原始 FTC 依赖库，使其优先使用 maven 库的阿里云镜像，因此你**不应接受 Android Studio 给 Gradle 加上代理的默认行为**，这会减慢你的同步过程。
 
-When you open the FTC project, the Gradle sync has actually already started. Since we have modified the original FTC dependency repositories to prioritize the Aliyun mirror of maven repositories over the original one, you **shouldn’t accept Android Studio’s default behavior of putting Gradle behind your proxy**, which will slow down your sync process.
-
-### Find a Java crash course
-
-A Java crash course is enough for all our coding needs, even if you don’t know anything of programming. I recommend https://www.runoob.com because it’s in Chinese, but it’s pretty dull so you may get uninterested. If you are willing to accept some language challenges, I recommend https://sololearn.com, which is in English. This site has a more engaging course, and it feels easier to learn than runoob.com.
-
-
-
-With all these set, you are ready to start a fascinating coding journey!
+完成所有这些后，你就可以开始一段迷人的编码之旅了！
