@@ -119,7 +119,7 @@ block
    class parameterName transBg
 ```
 
-- **访问修饰符**（Access modifier）：表示该方法允许被使用的范围（访问权限）。`public` 表示可全局访问。具体可参见[补充部分](#2.7)
+- **访问修饰符**（Access modifier）：表示该方法允许被使用的范围（访问权限）。`public` 表示可全局访问。具体可参见[补充部分](#27-补充访问修饰符)。
 - **返回类型**（Return type）：表示该方法返回值的类型（如 `int`, `String`, `void`......），决定方法内 `return` 语句返回的数据类型。`void` 表示方法不返回任何值，其 `return` 语句可省略或仅写 `return;`。
 - **方法名**（Method name）：方法的名字。
 - **参数**（Paramters）：执行这个方法需要提供的变量。传入的变量在方法中会作为局部变量储存。
@@ -338,207 +338,225 @@ public class Dog {
 | `default`   | Y      | Y        | Y              | N              | N      |
 | `private`   | Y      | N        | N              | N              | N      |
 
+## 3 类之间的关系
+
+> 理论上，学到这里你就可以开始为机器人编写代码了，以下关于继承，重写等的操作在机器人实际编写中使用不多。不过我仍然建议你了解一下以下内容。
+
+### 3.1 继承
+
+#### 3.1.1 概念
+
+**继承**（Inheritance）就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例**域**（Field，等价于成员变量）和方法，或子类从父类继承方法，使得子类具有父类相同的行为。以下是便于理解的一个例子:
+
+```mermaid
 ---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+    class 动物 {
+        eat()
+    }
 
-## 类之间的关系
+    动物 <|-- 食草动物
+    动物 <|-- 食肉动物
 
-> 理论上，目前为止你就可以直接进行机器人编写，以下关于继承，重写等的操作在机器人实际编写中使用不多。不过我仍然建议你了解一下以下内容。
-
-### 继承
-
-#### 1.概念
-
-继承就是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。以下是便于理解的一个例子:
-
-![img](https://www.runoob.com/wp-content/uploads/2013/12/14B0951E-FC75-47A3-B611-4E1883887339.jpg)
+    note "食草动物和食肉动物都有 eat 方法"
+```
 
 在实际编程中，我们可以把几个功能有重复，或者有相关性的类抽象出一个**父类**，并让**子类**分别继承**父类**，可以提高维护性，代码也更加简洁，提高代码的复用性。
 
-#### 2.Java代码
+#### 3.1.2 Java 代码
 
-```Java
-class 父类 {
+```java
+class Parent {
+    // parent code
 }
  
-class 子类 extends 父类 {
+class Child extends Parent {
+    // child code
 }
 ```
 
 当子类继承这个父类之后，就具有父类当中的属性和方法，子类就不会存在重复的代码。
 
-例如：有一个汽车类和巴士类
+例如，有一个汽车类和巴士类：
 
 ```java
-public class Car{
+public class Car {
 	private String name;
-    public Car(String name){
+
+    public Car(String name) {
         this.name = name;
     }
-    public void drive(){
-        System.out.println(name+"开车了"); 
+    
+    public void drive() {
+        System.out.println(name + "开车了"); 
     }
 }
 ```
 
 ```java
-public class Bus{
+public class Bus {
 	private String name;
-    public Bus(String name){
+
+    public Bus(String name) {
         this.name = name;
     }
-   	public void drive(){
-        System.out.println(name+"开车了"); 
+
+   	public void drive() {
+        System.out.println(name + "开车了"); 
     }
-    public void pay(){
+
+    public void pay() {
         System.out.println("你坐上了公交车，付钱！"); 
     }
 }
 ```
 
-那么我们可以提炼出一个父类Vehicle类
+那么我们可以提炼出一个父类 `Vehicle` 类：
 
 ```java
-public class Vehicle{
+public class Vehicle {
 	private String name;
-    public Vehicle(String name){
+
+    public Vehicle(String name) {
         this.name = name;
     }
-    public void drive(){
-        System.out.println(name+"开车了"); 
+
+    public void drive() {
+        System.out.println(name + "开车了"); 
     }
 }
 ```
 
-那么Car类与Bus类就可以这样写
+那么 `Car` 类与 `Bus` 类就可以这样写：
 
 ```java
-public class Car extends Vehicle{
-	public Car(String name){
+public class Car extends Vehicle {
+	public Car(String name) {
     	super(name);
     }
 }
 ```
 
 ```java
-public class Bus extends Vehicle{
-	public Bus(String name){
+public class Bus extends Vehicle {
+	public Bus(String name) {
         super(name);
     }
-    public void pay(){
+    public void pay() {
         System.out.println("你坐上了公交车，付钱！"); 
     }
 }
 ```
 
-**注意**：super关键字指向父类，相当于父类的this。super()方法则表示调用父类构造函数。
+一个子类**只能继承一个**父类。`super` 关键字指向父类，相当于父类的 `this`。`super()` 方法则表示调用父类构造函数。
 
-#### 3. 方法的重写(Override)
+#### 3.1.3 方法的重写（Override）
 
 重写是在继承关系的基础上，重写父类已有的方法，写成一个子类的新方法。在调用子类的该方法时，使用子类的方法而不是父类的方法。
 
 继续以上面的车子的代码为例，以下是重写的一个例子，你可以体会一下其作用：
 
 ```java
-public class Bus extends Vehicle{
-	public Bus(String name){
+public class Bus extends Vehicle {
+	public Bus(String name) {
         super(name);
     }
     
     @Override
-    public void drive(){                         // 重写了父类的drive()方法
-        System.out.println(name+"开车了，开的很慢"); 
+    public void drive() {
+        // 重写了父类的 drive() 方法
+        System.out.println(name + "开车了，开的很慢"); 
     }
     
-    public void pay(){
+    public void pay() {
         System.out.println("你坐上了公交车，付钱！"); 
     }
 }
 ```
 
-这时在使用Bus类的drive方法，就会输出 "开车了，开的很慢"
+这时再使用 `Bus` 类实例的 `drive` 方法，就会输出 `xxx开车了，开的很慢` 而不是 `xxx开车了`。
 
-### 抽象与实现
+### 3.2 抽象与实现
 
-#### 1.抽象类
+#### 3.2.1 抽象类
 
-在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。
+在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是**抽象类**（Abstract class）。抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段就决定要不要设计抽象类。
 
-省流：**抽象类**可以不写方法的具体**实现**，只规范他有些什么方法，需要在后续代码中**实现**或**重写**
+省流：**抽象类**可以不写方法的具体**实现**，只规定他有些什么方法，需要在后续代码中**实现**（Implement）或**重写**。
 
-在Java中，用abstract关键字来声明一个抽象类/函数
+在 Java 中，用 `abstract` 关键字来声明一个抽象类/函数:
 
 ```java
-public abstract class Vehicle{
+public abstract class Vehicle {
     private String name;
-    public Vehicle(String name){
+
+    public Vehicle(String name) {
         this.name = name;
     }
+    
     // 这是一个抽象方法，在父类中，没有具体实现，需要每个子类各自实现这个方法
-    public abstract void drive(){}
+    public abstract void drive();
 }
 ```
 
-#### 2.重写
+#### 3.2.2 重写
 
-在实现中也非常简单，使用@Override关键词来重写方法就可以输入具体实现
+在实现中也非常简单，使用 `@Override` 注解来重写方法就可以进行具体实现。
 
 ```java
-public class Bus extends Vehicle{
-	public Bus(String name){
+public class Bus extends Vehicle {
+	public Bus(String name) {
         super(name);
     }
     
     @Override
-    public void drive(){                         // 实现了父类的drive()方法
-        System.out.println(name+"开车了，开的很慢"); 
+    public void drive() {
+        // 实现了父类的drive()方法
+        System.out.println(name + "开车了，开的很慢"); 
     }
     
-    public void pay(){
+    public void pay() {
         System.out.println("你坐上了公交车，付钱！"); 
     }
 }
 ```
 
-#### 3.接口
+#### 3.2.3 接口
 
-如果一个类里面全是抽象的方法，那就是一个**接口**，我们这样来定义一个接口
+如果一个抽象类里面只有抽象方法，那它可以被改写为一个**接口**（Interface）。
 
-```java
-[可见度] interface 接口名称 [extends 其他的接口名] {
-        // 声明变量
-        // 抽象方法
-}
-```
+- 接口不能有具体的方法**实现**（Implementation），也就是说，方法体必须是空的！（除了被 `default` 修饰的方法）
+- 接口不能被**实例化**！必须有其他类来**实现**。
+- 接口里面除了有 `default` 修饰的方法，必须在继承时全部实现！
+- 接口可以多继承。（同一个类可以实现多个接口）
 
-+ 接口不能有具体的方法**实现**，也就是说，方法的里面必须是空的（除了带有default的方法）！
-
-+ 接口不能用来**实例化**！必须有其他类来**继承 **(implements)
-
-+ 接口里面除了有default标明的方法，必须在继承时全部实现！
-
-+ 接口可以多继承（同一个类可以继承多个接口）
-
-我们可以把Vehicle抽象成一个接口，大概就像这样：
+我们可以把 `Vehicle` 抽象成一个接口：
 
 ```java
-public interface Vehicle{
-    private String name;
+public interface Vehicle {
     public void drive();
-    public default void pay(){}// 不是所有的载具需要pay，所以若不实现就默认为空
+    public default void pay() {}  // 不是所有的载具需要 pay，所以若不实现就默认为空
 }
 ```
 
-那么Bus的代码就会变成这样：
+那么 `Bus` 的代码就会变成这样：
 
 ```java
-public class Bus implements Vehicle{
-	public Bus(String name){
-        super(name);
+public class Bus implements Vehicle {
+    private String name;
+
+	public Bus(String name) {
+        this.name = name;
     }
     
     @Override
-    public void drive(){                         // 实现了父类的drive()方法
-        System.out.println(name+"开车了，开的很慢"); 
+    public void drive() {
+        // 实现了 Vehicle 接口的 drive() 方法
+        System.out.println(name + "开车了，开的很慢"); 
     }
     
     @Override
@@ -548,42 +566,44 @@ public class Bus implements Vehicle{
 }
 ```
 
-那么抽象有什么优点呢，可以方便后续代码的调用和维护，比如**多态**。
+那么抽象有什么优点呢，可以方便后续代码的调用和维护，比如**多态**（Polymorphism）。
 
-### 多态
+### 3.3 多态
 
-情景： 我们现在作为一个人，需要去乘坐这些载具了，我们可以自己开车，也可以做公交车（当然，还有很多出行方式）
+情景：我们现在作为一个人，需要去乘坐这些载具了，我们可以自己开车，也可以坐公交车（当然，还有很多出行方式）。
 
-那么，我们想要去使用载具的行为就像这样
+那么，我们想要去使用载具的行为就像这样：
 
 ```java
-public class Person{
+public class Person {
     Bus bus = new Bus("bus");
     Car car = new Car("car");
-	public void go(String choice){
-        switch(choice){
+
+	public void go(String choice) {
+        switch (choice) {
             case "Car":
                 car.drive();
+                break;
             case "Bus":
                 bus.drive();
+                break;
         }
     }
+
     public static void main(String[] args){
         go("Bus");
     }
 }
 ```
 
-你不难发现，这个代码如同答辩，因为每多增加一种出行方式，我们就要在switch例多写一个判断。没有可维护性。
-
-但是如果我们让两个类继承自Vehicle类的话，我们就可以这样写。
+你不难发现，这个代码可延展性极差。因为每多增加一种出行方式，我们就要在 `switch` 语句中多写一个判断。没有可维护性。但是如果我们让两个类继承自 `Vehicle` 类的话，我们就可以这样写：
 
 ```java
-public class Person{
-	public static void go(Vehicle vehicle){
+public class Person {
+	public static void go(Vehicle vehicle) {
         vehicle.drive();
-        }
     }
+
 	public static void main(String[] args){
         Bus bus = new Bus("bus");
         go(bus);
@@ -591,15 +611,13 @@ public class Person{
 }
 ```
 
-Bus作为一个Vehicle的子类，可以作为这里参数的Vehicle类型直接传入，并调用driv()方法。
+`Bus` 作为一个 `Vehicle` 的子类，可以作为这里参数的 `Vehicle` 类型直接传入，并调用 `drive()` 方法。
 
-当然，如果有其他载具，只需要让他继承Vehicle类，不需要改变这里人的逻辑，增强了可延展性。
+当然，如果有其他载具，只需要让它继承 `Vehicle` 类，不需要改变 `Person` 类的逻辑，增强了可延展性。
 
-此外，如果不同载具的drive逻辑不同，只需要在继承时重写该方法即可，通过调用vehicle.drive()可以做到不同载具的不同逻辑，此处就不赘述了。
+此外，如果不同载具的 `drive` 逻辑不同，只需要在继承时重写该方法即可，通过调用 `vehicle.drive()` 可以做到不同载具的不同逻辑，此处就不赘述了。
 
----
-
-## 练习
+## 4 练习
 
 以下是一个网上摘抄下来的简单的类，我已经好心地保留了注释，看看这个类有些什么功能
 
@@ -691,9 +709,3 @@ public class EmployeeTest {
     }
 }
 ```
-
-[footnote-1]: #footnote-1
-关于访问修饰符的介绍，见 *补充：访问修饰符
-[^2]: 注意：参数变量有作用域，只能在方法内部使用
-[^3]: 构造方法的名字必须和类名保持一致，然而可以利用参数的不同来实现多个构造方法，这涉及方法的重载(Overload)
-[^4]: 这取决于基类是否在同一个包
