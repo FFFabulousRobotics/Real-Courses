@@ -164,7 +164,7 @@ GitHub 是一个成熟的代码托管平台，FTC 的官方**软件开发工具�
 
 1. 启动你的Android Studio。
 2. 点击“Get from VCS”。
-3. 如果你还没有安装 Git，可以点击右侧的“Download and Install”进行安装。记得为 Git 设置代理。（之前讨论过，请参阅[先决条件 &gt; Git &gt; Git 代理](#git-代理)）
+3. 如果你还没有安装 Git，可以点击右侧的“Download and Install”进行安装。记得为 Git 设置代理。（之前讨论过，请参阅[1.2.2 Git 代理](#122-git-代理)）
 4. 点击左侧的“GitHub”。
 5. 点击“Log In via GitHub...”
 6. 在弹出的浏览器中点击“Authorize in GitHub”。
