@@ -21,46 +21,16 @@ public class HelloWorld {
 
 我们可以分析一下这段代码：
 
-1. **文件名**：源文件名必须和类名相同，文件名和类名不相同会导致编译错误。文件的后缀为 `.java`。切记 Java 是**大小写敏感**的，也就是说 `hello` 和 `Hello` 是不同的。
+1. **文件名**：源文件名必须和类名相同，文件名和类名不相同会导致编译错误。文件名的后缀为 `.java`。切记 Java 是**大小写敏感**（Case-sensitive）的，也就是说 `hello` 和 `Hello` 是不同的。
 2. **类名**：所有类名的首字母都应该大写。如果类名由若干单词组成，那么每个单词的首字母应该大写（大驼峰命名），例如 `MyFirstJavaClass`。
 3. **方法名**：所有的方法名的首字母都应该小写。如果方法名含有若干单词，则后面的每个单词首字母大写（小驼峰命名）,例如 `myFirstMethod`。
-4. **主方法入口**：所有的 Java 程序由 `public static void main(String[] args)` 方法开始执行。
-
-```mermaid
-block
-   columns 6
-   
-   explain1["访问修饰符"]
-   explain2["非访问修饰符"]
-   explain3["返回类型"]
-   explain4["方法名"]
-   explain5["参数列表"]:2
-
-   accessModifier["<code>public</code>"]
-   staticModifier["<code>static</code>"]
-   returnType["<code>void</code>"]
-   functionName["<code>main</code>"]
-   parameterClass["<code>(String[]</code>"]
-   parameterName["<code>args)</code>"]
-
-   space:4
-   explain6["参数类型"]
-   explain7["参数名称"]
-
-   classDef transBg fill:transparent,stroke:transparent;
-   class accessModifier transBg
-   class staticModifier transBg
-   class returnType transBg
-   class functionName transBg
-   class parameterClass transBg
-   class parameterName transBg
-```
+4. **主方法入口**：所有的 Java 程序都从 `public static void main(String[] args)` 方法开始执行。
 
 ## 2 变量
 
-变量是存储某个类型的数据的有名字的容器。
+**变量**（Variable）是存储某个**数据类型**（Data type）的数据的有名字的容器。
 
-### 2.1 基本数据类型
+### 2.1 基本数据类型（Primitive data type）
 
 Java 内置的数据类型有很多种，可以大致分为几大类：整数，小数，字符，布尔值：
 
@@ -99,7 +69,7 @@ a = 4;  // 把变量a修改为4
 
 除此之外，还有参数变量，静态变量，局部变量等概念，这里不再赘述，读者可自行了解。
 
-### 2.3 常量声明
+### 2.3 常量（Constant）声明
 
 在语句最前面加上 `final` 关键词，通常与 `static` 关键词一起使用（表示该常量属于类而不属于对象）。
 
@@ -444,5 +414,5 @@ default
 ```
 
 > [!IMPORTANT]
-> - 除非特意设计，一定要记得在 `case` 末尾加上 `break`;
-> - 无论是否有 `default` 的处理逻辑，**都建议加上 `default` 分支**，哪怕里面是空的
+> - 除非特意设计，一定要记得在 `case` 末尾加上 `break`；
+> - 无论是否有 `default` 的处理逻辑，**都建议加上 `default` 分支**，哪怕里面是空的。

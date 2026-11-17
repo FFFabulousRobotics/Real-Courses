@@ -2,50 +2,43 @@
 
 ## 1 概念
 
-编程语言经常以其主要**编程范式**（Programming paradigm）来分类。最常见的两种编程范式是**面向过程**和**面向对象**。
+### 1.1 面向过程 vs. 面向对象
 
-### 面向过程 VS. 面向对象
+编程语言经常以其主要**编程范式**（Programming paradigm）来分类。最常见的两种编程范式是**面向过程**（Procedural Programming）和**面向对象**（Object-Oriented Programming, OOP）。
 
-​        **面向过程**就像将编程当成是做一件事，要按**步骤**完成，每一步就是一个过程。比如作菜，先放油，接着是放菜进去炒，然后放水，最后菜就做好了。这里面放油，炒，放水就是三个步骤。
+面向过程和面向对象的主要区别在于它们看待问题的方式：
 
-​        **面向对象**就是将编程当成是一个事物，对外界来说，事物是直接使用的，**不用去管他内部的情况**。而编程就是设置事物能够做什么事。其实有点像是将面向过程给放到事物内部了。仍然举作菜为例，其实**面向过程**就好像你是个厨师，要自己炒菜，所以要讲究步骤，而**面向对象**就好像你是个食客，你只要通知厨师作菜，即发一个消息就可以了，至于厨师怎样作菜，是不用知道的。
+- 面向过程将问题的解决方法当成是一个固定的流程，要按**步骤**完成，每一步就是一个过程。比如做菜：先放油，接着是放菜进去炒，然后放水，最后菜就做好了。这里面放油，炒，放水就是三个步骤。
+- 面向对象将问题拆解成独立的部分（即**对象**），并对每部分分别建模（即**类**），最后将各部分组合起来解决问题。比如打电话：双方的手机可以看作两个相似的部分，而通信卫星可以看作另一个部分。分别对手机和卫星建模之后，再将它们组合起来就能解决问题。
 
-> 在学习面向对象之前，至少需要对面向过程编程有一点了解（至少语法得都认识吧）
+### 1.2 何时创建面向对象的程序
 
-### 何时创建面向对象的程序
+​简单的编程任务可以用简单的单个流程来实现。然而，随着任务的规模和复杂度的增加，单个流程会变得更加复杂和难以管理。这时可以将复杂流程分解成较简单的流程的组合。即便如此，随着任务复杂度的持续增加，设计和管理流程之间的关系也会变得困难和容易出错。这种情况下，你可以考虑面向对象的程序设计。
 
-​        简单的编程任务可以用简单的函数来实现。然而，随着任务的规模和复杂度的增加，函数会变得更加复杂和难以管理。
+​同时，对某些问题来说，从对象的角度来考虑解决办法会更简单、更自然：将问题陈述中的名词视为要定义的对象，动词视为要执行的操作，就可以将大问题拆解成如何对不同对象建模的小问题。
 
-​        当函数变得太大时，您可以将它们分成较小的函数，并将数据从一个函数传递到另一个函数。然而，随着函数数量的增加，设计和管理传递给函数的数据也变得困难和容易出错。这种情况下，你可以考虑面向对象的程序设计。
+### 1.3 对象和类
 
-​        对某些问题来说，从对象的角度来考虑会更简单、更自然。将问题陈述中的名词视为要定义的对象，动词视为要执行的操作。
+- **对象**（Object）：对象是类的一个**实例**（Instance），有状态和行为。
+- **类**（Class）：类是一个模板，它描述一类对象的行为和状态。
 
-#### 概念: 对象和类
+#### 1.3.1 对象和类的区别
 
-- **对象**：对象是类的一个实例，有状态和行为。
-- **类**：类是一个模板，它描述一类对象的行为和状态。
+对象是具体的，包含该对象特定**属性值**和**方法**。
 
-#### 对象与类的差别
+类是抽象的（相对于对象而言），只定义一类对象**可以有的属性和方法**，不定义**每个对象特定的**属性值和方法。
 
-**对象**是具体的，有该对象特定**属性值**和**方法**的。
+对象可以被想象成一个具体的物体，类可以被想象成将一类物体抽象提炼出一个概念。比如你笔盒里有一支短铅笔、另有一支钝铅笔，他们都从属于铅笔这一概念。铅笔这个概念描述了一种呈条形，有石墨和粘土构成的铅芯和木制的外壳，可以在纸上写字的物体，但是铅笔作为**概念**是没有这些**物质性**的特征的。（你不能手握一个虚无缥缈的概念来书写，对吧？）这就是类与对象的差别。在这个例子中，铅笔是类，一支短铅笔和另一支钝铅笔是两个对象。
 
-**类**是抽象的（相对于对象而言），只定义一类对象**可以有的属性和方法**，不定义**每个对象特定的**属性值和方法。
+#### 1.3.2 对象和类的关系
 
-对象可以被想象成一个具体的物体，类可以被想象成将一类物体抽象提炼出一个概念。比如你笔盒里有一支短铅笔、另有一支钝铅笔，他们都从属于铅笔这一抽象概念。铅笔这个概念描述了这两支铅笔有石墨和粘土构成的铅芯和木制的外壳、可以在纸上写字，但是铅笔这个**概念**是没有这些**物质性**的特征的。（你不能手握一个虚无缥缈的概念书写，对吧？）这就是类与对象的差别。在这个例子中，铅笔是类，一支短铅笔和另一支钝铅笔是两个对象。
+对象是类的一个实例。我们也可以用真实世界的例子来理解编程中的对应概念。
 
-#### 对象和类的理解
+拿一条大黄来举例，大黄是一个**对象**，它的名字叫大黄，是中华田园犬，毛色黄白相间，遇到陌生的人会大声叫，遇到认识的人会摇尾巴，跑得也很快。但**狗**是一个**类**，代表一个能被主人取名，有不同品种，不同毛色，会叫，会摇尾巴，会跑的物种。
 
-**对象**是类的一个实例。我们也可以用真实世界的**类**与**对象**来理解编程中的对应概念。
+我们借此理解编程中的概念。在编程中，**不同对象也有各自不同的状态和行为**。软件对象的状态就是**属性**（Attribute），行为就是**方法**（Method）。
 
-拿一条狗来举例，**一条狗**是一个**对象**，它的状态有：名字、品种、颜色，行为有：叫、摇尾巴和跑；**狗类**则是一个**类**，代表着一系列有着相似属性、方法的物种。
-
-我们借此理解软件中的概念，**软件对象也有状态和行为。软件对象的状态就是属性，行为通过方法体现。**
-
-<img src="https://www.runoob.com/wp-content/uploads/2013/12/20210105-java-object-1.png" />
-
-你可能会理解为：类是一个集合，而对象是一个元素。**我不反对，但是不要完全依赖集合的概念去理解类，后续的有些概念会有出入！**
-
-## Java 中的类
+## 2 Java 中的类
 
 类可以看成是创建 Java 对象的模板。下面是一个简单的狗类定义。
 
@@ -56,129 +49,182 @@ public class Dog {
     String colour;
     int age;
  
-    void eat() {
-    }
+    void eat() {}
  
-    void run() {
-    }
+    void run() {}
  
-    void sleep(){
-    }
+    void sleep() {}
  
-    void name(){
-    }
+    void name() {}
 }
 ```
 
 一个类可以包含以下类型变量：
 
-- **局部变量**：在方法、构造方法或者语句块中定义的变量被称为局部变量。变量声明和初始化都是在方法中，方法结束后，变量就会自动销毁。
-- **成员变量**：成员变量是定义在类中，方法体之外的变量。这种变量在创建对象的时候实例化。成员变量可以被类中方法、构造方法和特定类的语句块访问。
-- **类变量**：类变量也声明在类中，方法体之外，但必须声明为 static 类型。
+- **局部变量**（Local variable）：在方法、构造方法或者语句块中定义的变量被称为局部变量。变量声明和初始化都是在方法中，方法结束后，变量就会自动销毁。
+- **成员变量**（Member variable）：成员变量是定义在类中，方法体之外的变量。这种变量在创建对象的时候实例化。成员变量可以被类中方法、构造方法和特定类的语句块访问。
+- **类变量**（Class variable）：类变量也声明在类中，方法体之外，但必须声明为 `static` 类型。
 
-一个类可以拥有多个方法，在上面的例子中：eat()、run()、sleep() 和 name() 都是 Dog 类的方法。
+一个类可以拥有多个方法，在上面的例子中：`eat()`、`run()`、`sleep()` 和 `name()` 都是 `Dog` 类的方法。
 
 接下来，我们来详细介绍类的具体定义方式
 
-### 声明一个类
+### 2.1 声明一个类
 
 ```java
 public class Dog {
+    // code here
 }
 ```
 
-这句代码表示声明了一个类，名字为Dog，可全局访问[^1] ，其内部的方法在大括号里面编写。
+这句代码表示声明了一个类，名字为 `Dog`，可全局访问，其内部的方法在大括号里面编写。
 
-### 定义一个方法
+### 2.2 定义一个方法
 
 ```java
 public class Dog {
-    public void say(String word){
+    public void say(String word) {
         System.out.println(word);
     }
 }
 ```
 
-这句代码往狗类里面加入了一个say的方法，可以让小狗说话，我们来仔细看看这个方法
+这句代码往狗类里面加入了一个 `say` 的方法，可以让小狗说话，我们来仔细看看这个方法：
 
-+ **访问修饰符**（例中为public）：表示该方法允许被使用的范围（访问权限）
-+ **返回类型**（例中为void）：表示该方法返回值的类型（如int, String, void......），具体是什么取决于方法内return语句返回的数据类型，若没有return语句，则返回类型为void。
-+ **方法名**（例中为say）：方法的名字
-+ **参数**（例中为word）：在调用这个方法时，将会接受一个**参数**，被存储为String变量word，在方法的具体实现中，可以直接把word作为变量使用[^2]。
+```mermaid
+block
+   columns 5
+   
+   explain1["访问修饰符"]
+   explain2["返回类型"]
+   explain3["方法名"]
+   explain4["参数列表"]:2
 
-### 成员变量
+   accessModifier["<code>public</code>"]
+   returnType["<code>void</code>"]
+   functionName["<code>say</code>"]
+   parameterClass["<code>(String</code>"]
+   parameterName["<code>word)</code>"]
 
-我们往狗类中加入一个成员变量：年龄
+   space:3
+   explain6["参数类型"]
+   explain7["参数名称"]
+
+   classDef transBg fill:transparent,stroke:transparent;
+   class accessModifier transBg
+   class staticModifier transBg
+   class returnType transBg
+   class functionName transBg
+   class parameterClass transBg
+   class parameterName transBg
+```
+
+- **访问修饰符**（Access modifier）：表示该方法允许被使用的范围（访问权限）。`public` 表示可全局访问。具体可参见[补充部分](#2.7)
+- **返回类型**（Return type）：表示该方法返回值的类型（如 `int`, `String`, `void`......），决定方法内 `return` 语句返回的数据类型。`void` 表示方法不返回任何值，其 `return` 语句可省略或仅写 `return;`。
+- **方法名**（Method name）：方法的名字。
+- **参数**（Paramters）：执行这个方法需要提供的变量。传入的变量在方法中会作为局部变量储存。
+
+所以，`say` 函数是一个可被全局访问，接受一个字符串参数，并不返回任何东西的方法。
+
+### 2.3 成员变量
+
+我们往狗类中加入一个成员变量：年龄 `age`。
 
 ```java
 public class Dog {
-    int age;
-    public void say(String word){
+    int age;  // 年龄
+
+    public void say(String word) {
         System.out.println(word);
         System.out.println("I'm " + this.age + " years old")
     }
-    public void grow(){
+
+    public void grow() {
         this.age += 1;
     }
 }
 ```
 
-这个代码展示了如何定义一个成员变量，并在方法里使用他。
-
-我们需要注意，如果我们要使用一个定义在**类的主体**中成员变量（我的意思是，不是定义在方法内部），我们需要加上this关键字。
-
-
+这个代码展示了如何定义一个成员变量，并在方法里使用。需要注意，如果一个方法内有同名的局部变量和成员变量，在访问成员变量时需要加上 `this` 关键字：
 
 ```java
 public class Dog {
-    private int age;
-    public void say(String word){
+    private int age;  // 年龄
+
+    public void say(String word) {
         System.out.println(word);
     }
-    public void setAge(int age){
+
+    public void setAge(int age) {
         this.age = age;
     }
-    public int getAge(){
+
+    public int getAge() {
         return this.age;
     }
 }
 ```
 
-### 实例化一个类（创建对象）
+### 2.4 实例化（Instantiate）一个类（创建对象）
 
 ```java
-public static void main(String[] args) {
-        // 创建对象
-        Dog myDog = new Dog();
-    	myDog.say("Hello!");
-    	myDog.age = 3;
+public class Test {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();  // 创建对象
+        myDog.say("Hello!");
+        myDog.age = 3;
     }
+}
 ```
 
-实例化对象的语法有点类似变量，但是又多了些什么
+实例化对象的语法有点类似变量声明：
 
-+ 类型（例中为Dog）：对象的类型（对象对应的类）
-+ 对象名字（例中为myDog）：对象的名字
-+ new关键字
-+ Dog() ：创建一个Dog类型的对象，注意后面的括号！后面你会知道他有什么用。
+```mermaid
+block
+   columns 5
+   
+   explain1["类型"]
+   explain2["对象名"]
+   space
+   explain3["new关键字"]
+   explain4["构造方法"]
 
-之后，我们可以用`对象.方法()`来使用其方法。
+   varType["<code>Dog</code>"]
+   varName["<code>myDog</code>"]
+   equals["<code>=</code>"]
+   newKeyword["<code>new</code>"]
+   constructor["<code>Dog();</code>"]
 
-不仅如此，我们也可以属于`对象.成员变量`来访问其成员变量（甚至修改他）
+   classDef transBg fill:transparent,stroke:transparent;
+   class varType transBg
+   class varName transBg
+   class equals transBg
+   class newKeyword transBg
+   class constructor transBg
+```
 
-### 构造方法
+- 类型：对象的类型，即对象对应的类。
+- 对象名：对象的名字。
+- `new` 关键字：表明需要创建一个对象。
+- **构造方法**（Constructor）：使用构造函数创建对象。
 
-每个类都有构造方法。如果没有显式地为类定义构造方法，Java 编译器将会为该类提供一个默认构造方法。**构造方法的名称必须与类同名**，一个类可以有多个构造方法[^3]。构造方法在一个对象被使用**new关键字被创建时立刻被调用**。
+对象创建之后，我们可以使用 `对象.方法()` 来调用其方法，以及使用 `对象.成员变量` 来访问和修改其成员变量。
+
+### 2.5 构造方法
+
+每个类都有构造方法。如果没有显式地为类定义构造方法，Java 编译器将会为该类提供一个默认的无参数构造方法。**构造方法的名称必须与类同名**，一个类可以有多个构造方法。构造方法在一个对象被使用 **`new` 关键字创建时立刻被调用**。
 
 ```java
 public class Dog {
     int age;
     String name;
-    public void Dog(String name){
+
+    public Dog(String name) {
         this.name = name;
         this.age = 1;
     }
-    public void say(String word){
+
+    public void say(String word) {
         System.out.println(word);
         System.out.println("I'm " + this.age + " years old")
     }
@@ -189,77 +235,80 @@ public class Dog {
 }
 ```
 
-我们定义了一个构造方法，可以在创建对象时就为小狗赋予名字，并设置年龄为1岁
+我们定义了一个构造方法 `public Dog (String name)`，可以在创建对象时就为小狗赋予名字，并设置年龄为1岁。
+
+> [!IMPORTANT]
+> 构造方法不定义返回值。
 
 加入构造方法后，我们创建对象的代码就需要相应地做出改变。
 
 ```java
-public static void main(String[] args) {
-        // 创建对象
-        Dog myDog = new Dog("Lucky");
+public class Test {
+    public static void main(String[] args) {
+        Dog myDog = new Dog("Lucky");  // 使用构造方法创建对象
     	myDog.say("Hello!");
     	myDog.age = 3;
     }
+}
 ```
 
-关注：传入的Lucky是构造方法的参数！也就是说，在new的这一行里，构造方法被调用了。
+传入的 `"Lucky"` 是构造方法的参数。也就是说，在创建对象的这一行里，构造方法被调用了。
 
-### 成员变量的保护
+### 2.6 成员变量的保护
 
 如果，我们写的代码就像这个狗类直接发布给大众，绝对有可能会对我们的类进行这样的篡改。
 
 ```java
-public static void main(String[] args) {
+public class Test {
+    public static void main(String[] args) {
         Dog myDog = new Dog("Lucky");
     	myDog.age = 99999;
     }
+}
 ```
 
-我们当然不希望这种事情发生，所以需要对age变量进行加密
+我们当然不希望这种事情发生，所以需要对成员变量进行保护。
 
-我们可以把成员变量的访问权限设置为private，防止从其他文件的代码直接访问到变量
-
-我们可以为他们设置专门的get方法，让变量只**可读**。
+我们可以把成员变量的访问权限设置为 `private`，这样其他类的代码就无法直接通过 `对象.成员变量` 访问成员变量了。为了仍能从别处读取成员变量的值，可以为他们设置专门的 `get` 方法，让变量**只读**（Read-only）。
 
 ```java
 public class Dog {
     private int age;
     private String name;
-    public void Dog(String name){
+
+    public void Dog(String name) {
         this.name = name;
         this.age = 1;
     }
     
-    public void say(String word){
+    public void say(String word) {
         System.out.println(word);
         System.out.println("I'm " + this.age + " years old")
     }
     
-    public void grow(){
+    public void grow() {
         this.age += 1;
     }
     
-    public int getAge(){
+    public int getAge() {
         return this.age;
     }
     
-    public int getName(){
+    public int getName() {
         return this.name;
     }
 }
 ```
 
-这样，我们只能调用`mydog.getAge()`来读取变量，而无法修改他。
+这样，我们只能调用 `myDog.getAge()` 来读取变量，而无法修改他。
 
-当然，`mydog.age`也不起作用了，因为访问权限已经设置为了private。
-
-这个代码习惯叫做**封装**，只能通过写好的定义get/set方法来访问变量，来保护一些变量防止被恶意修改。
+这种操作叫做**封装**（Encapsulation），只能通过定义好的 `get/set` 方法（Getter/Setter）来访问变量，来保护一些变量防止被恶意修改。
 
 ```java
 public class Dog {
     private String name;
     
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
     
@@ -269,23 +318,23 @@ public class Dog {
 }
 ```
 
-以上代码针对name这一变量展示了完整的封装。
+以上代码针对 `name` 这一变量展示了完整的封装。
 
-### *补充：访问修饰符
+### 2.7 补充：访问修饰符
 
-Java中，可以使用访问控制符来保护对类、变量、方法和构造方法的访问。Java 支持 4 种不同的访问权限。
+在 Java 中，可以使用访问控制符来对类、变量和方法的访问权限进行限制。Java 支持4种不同的访问权限：
 
-- **default** (即默认，什么也不写）: 在同一包内可见，不使用任何修饰符。使用对象：类、接口、变量、方法。
-- **private** : 在同一类内可见。使用对象：变量、方法。 **注意：不能修饰类（外部类）**
-- **public** : 对所有类可见。使用对象：类、接口、变量、方法
-- **protected** : 对同一包内的类和所有子类可见。使用对象：变量、方法。 **注意：不能修饰类（外部类）**。
+- `public`：对所有类可见。使用对象：类、接口、变量、方法。
+- `protected`：对同一**包**（Package）内的类和所有子类可见。使用对象：变量、方法。**不能用于修饰外部类。**
+- `default`（即默认，不使用任何修饰符）：在同一包内可见。使用对象：类、接口、变量、方法。
+- `private`：在同一类内可见。使用对象：变量、方法。**不能用于修饰外部类。**
 
 我们可以通过以下表来说明访问权限：
 
-| 修饰符      | 当前类 | 同一包内 | 子孙类(同一包) | 子孙类(不同包) | 其他包 |
-| :---------- | :----- | :------- | :------------- | :------------- | :----- |
+| 修饰符      | 当前类 | 同包内 | 子类（同包） | 子类（不同包） | 其他包 |
+|-|-|-|-|-|-|
 | `public`    | Y      | Y        | Y              | Y              | Y      |
-| `protected` | Y      | Y        | Y              | Y/N[^4]        | N      |
+| `protected` | Y      | Y        | Y              | Y              | N      |
 | `default`   | Y      | Y        | Y              | N              | N      |
 | `private`   | Y      | N        | N              | N              | N      |
 
@@ -643,9 +692,8 @@ public class EmployeeTest {
 }
 ```
 
----
-
-[^1]: 关于访问修饰符的介绍，见 *补充：访问修饰符
+[footnote-1]: #footnote-1
+关于访问修饰符的介绍，见 *补充：访问修饰符
 [^2]: 注意：参数变量有作用域，只能在方法内部使用
 [^3]: 构造方法的名字必须和类名保持一致，然而可以利用参数的不同来实现多个构造方法，这涉及方法的重载(Overload)
 [^4]: 这取决于基类是否在同一个包
